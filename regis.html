@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - AresFitness</title>
+    <link rel="stylesheet" href="Css/regis.css">
+    <link rel="icon" href="Imagenes/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="index.jsp"><img src="Imagenes/logo.png" alt="Logo AresFitness"></a>
+        </div>
+    </header>
+
+    <main>
+        <section class="formulario">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>CREA TU CUENTA</h2>
+                    <p>Únete a la familia AresFitness y comienza tu transformación</p>
+                </div>
+                
+                <form id="registroForm" action="Registro" method="post">
+                    <div class="input-group">
+                        <div class="input-row">
+                            <div class="input-field">
+                                <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="input-field">
+                                <input type="text" id="apellido" name="apellido" placeholder="Apellidos" required>
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="input-field">
+                            <input type="text" id="dni" name="dni" placeholder="DNI" maxlength="8" required>
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        
+                        <div class="input-field">
+                            <input type="email" id="correo" name="correo" placeholder="Correo electrónico" required>
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        
+                        <div class="input-field">
+                            <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+                            <i class="fas fa-lock"></i>
+                            <i class="fas fa-eye toggle-password"></i>
+                        </div>
+
+                        <div class="input-field">
+                            <input type="password" id="confirmarContrasena" name="confirmarContrasena" placeholder="Confirmar Contraseña" required>
+                            <i class="fas fa-lock"></i>
+                            <i class="fas fa-eye toggle-password"></i>
+                        </div>
+                        
+                        <div class="input-row">
+                            <div class="input-field">
+                                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="input-field select-field">
+                                <select id="genero" name="genero" required>
+                                    <option value="">Género</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femenino</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                                <i class="fas fa-venus-mars"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="input-field">
+                            <input type="tel" id="telefono" name="telefono" placeholder="Teléfono" required>
+                            <i class="fas fa-phone"></i>
+                        </div>
+
+                        <!-- Campos ocultos para plan y coach -->
+                        <input type="hidden" id="planSeleccionado" name="planSeleccionado">
+                        <input type="hidden" id="coachIncluido" name="coachIncluido">
+                    </div>
+                    
+                    <button type="submit" class="register-btn">
+                        REGISTRARME <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+                
+                <div class="form-footer">
+                    <p id="mensajeRegistro"></p>
+                    <p>¿Ya tienes cuenta? <a href="login.jsp">Inicia sesión aqui­</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 AresFitness. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="JS/regis.js"></script>
+</body>
+</html>

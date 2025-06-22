@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Contraseña - AresFitness</title>
+    <link rel="stylesheet" href="Css/olvide.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="index.jsp">
+                <img src="Imagenes/logo.png" alt="Logo AresFitness">
+            </a>
+        </div>
+        <nav>
+            <ul> 
+                <li><a href="planes.jsp">PLANES</a></li>
+                <li><a href="ubi.html">UBICACIÓN</a></li>
+                <div class="icon-container">
+                    <a href="login.jsp">
+                        <img src="Imagenes/usuario.png" alt="Inicio de Sesión" id="icono-inicio-sesion">
+                    </a>
+                </div>  
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contenedor-recuperacion">
+        <div class="formulario-recuperacion">
+            <h1>Recuperar Contraseña</h1>
+            <p>Ingresa tu correo electrónico asociado a tu cuenta y te enviaremos un enlace para restablecer tu contraseña.</p>
+            
+            <form action="#" method="POST">
+                <div class="campo-formulario">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" required placeholder="tu@email.com" autocomplete="email">
+                </div>
+                
+                <button type="submit" class="boton-enviar">Enviar Enlace</button>
+            </form>
+            
+            <div class="enlaces-extra">
+                <a href="login.jsp">Volver al Inicio de Sesión</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="logo-container">
+            <a href="index.jsp">
+                <img src="Imagenes/logo.png" alt="Logo Ares Fitness"><br><br>
+            </a>
+        </div>
+        <div class="footer_container">
+            <!-- Sección izquierda: Redes y contacto -->
+  
+        <p>&copy; 2023 AresFitness. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
