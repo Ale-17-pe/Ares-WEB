@@ -5,25 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - AresFitness</title>
     <link rel="stylesheet" href="Css/regis.css">
+    <link rel="stylesheet" href="Css/index.css">
     <link rel="icon" href="Imagenes/logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
         <div class="logo-container">
-            <a href="index.jsp"><img src="Imagenes/logo.png" alt="Logo AresFitness"></a>
+            <a href="index.html"><img src="Imagenes/logo.png" alt="Logo AresFitness"></a>
         </div>
     </header>
 
     <main>
-        <section class="formulario">
+        <!-- Contenedor de éxito (oculto inicialmente) -->
+        <div class="success-container" style="display: none;">
+            <div class="card">
+                <i class="fa-solid fa-circle-check icon"></i>
+                <h2>¡Registro Exitoso!</h2>
+                <p>Tu cuenta ha sido creada correctamente.</p>
+                <a href="login.html" class="btn-login">Iniciar Sesión</a>
+            </div>
+        </div>
+
+        <!-- Contenedor de error (oculto inicialmente) -->
+        <div class="error-container" style="display: none;">
+            <div class="form-container">
+                <div class="form-header">
+                    <i class="fas fa-exclamation-triangle icono-error"></i>
+                    <h2>¡Algo salió mal!</h2>
+                    <p>No pudimos completar tu registro.<br>Puedes intentar nuevamente o volver al inicio.</p>
+                </div>
+
+                <div class="btn-field">
+                    <form action="regis.jsp">
+                        <button type="submit" class="btn-volver">Volver al Registro</button>
+                    </form>
+                    <form action="index.jsp">
+                        <button type="submit" id="signIn">Ir al Inicio</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Formulario de registro (visible inicialmente) -->
+        <section class="formulario" id="formularioRegistro">
             <div class="form-container">
                 <div class="form-header">
                     <h2>CREA TU CUENTA</h2>
-                    <p>Unete a la familia AresFitness y comienza tu transformación</p>
+                    <p>Únete a la familia AresFitness y comienza tu transformación</p>
                 </div>
                 
-                <form id="registroForm" action="Registro" method="post">
+                                <form id="registroForm" action="Registro" method="post">
                     <div class="input-group">
                         <div class="input-row">
                             <div class="input-field">
@@ -42,20 +75,24 @@
                         </div>
                         
                         <div class="input-field">
-                            <input type="email" id="correo" name="correo" placeholder="Correo electr�nico" required>
+                            <input type="email" id="correo" name="correo" placeholder="Correo electrónico" required>
                             <i class="fas fa-envelope"></i>
                         </div>
                         
                         <div class="input-field">
-                            <input type="password" id="contrasena" name="contrasena" placeholder="Contrase�a" required>
+                            <input type="password" id="contrasena" name="contraseña" placeholder="Contraseña" required>
                             <i class="fas fa-lock"></i>
                             <i class="fas fa-eye toggle-password"></i>
                         </div>
 
                         <div class="input-field">
-                            <input type="password" id="confirmarContrasena" name="confirmarContrasena" placeholder="Confirmar Contrase�a" required>
-                            <i class="fas fa-lock"></i>
-                            <i class="fas fa-eye toggle-password"></i>
+                             <input type="password" id="contrasena" name="contraseña" placeholder="Contraseña" required>
+                             <i class="fas fa-lock"></i>
+                             <i class="fas fa-eye toggle-password"></i>
+                             <div class="password-strength-container">
+                                 <div id="password-strength-bar" class="password-strength-bar"></div>
+                                 <div id="password-strength-text" class="password-strength-text"></div>
+                            </div>
                         </div>
                         
                         <div class="input-row">
@@ -65,7 +102,7 @@
                             </div>
                             <div class="input-field select-field">
                                 <select id="genero" name="genero" required>
-                                    <option value="">G�nero</option>
+                                    <option value="">Género</option>
                                     <option value="M">Masculino</option>
                                     <option value="F">Femenino</option>
                                     <option value="Otro">Otro</option>
@@ -74,9 +111,9 @@
                             </div>
                         </div>
                         
-                        <div class="input-field">
-                            <input type="tel" id="telefono" name="telefono" placeholder="Tel�fono" required>
-                            <i class="fas fa-phone"></i>
+                        <div class="input-field tel-field">
+                                 <input type="tel" id="telefono" name="telefono" placeholder="Teléfono" maxlength="9" required>
+                                 <i class="fas fa-phone"></i>
                         </div>
 
                         <!-- Campos ocultos para plan y coach -->
@@ -91,13 +128,29 @@
                 
                 <div class="form-footer">
                     <p id="mensajeRegistro"></p>
-                    <p>�Ya tienes cuenta? <a href="login.jsp">Inicia sesi�n aqui�</a></p>
+                    <p>¿Ya tienes cuenta? <a href="login.jsp">Inicia sesión aquí</a></p>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
+        <div id="LOGO">
+            <img src="Imagenes/logo.png" alt="Logo ARES DITNES">
+        </div>
+        <div class="footer_container">
+            <div class="footer-section">
+                <strong>Enlaces útiles</strong>
+                <a href="#">Inicio</a>
+                <a href="#">Planes</a>
+                <a href="#">Clases</a>
+            </div>
+            <div class="footer-section">
+                <strong>Contacto</strong>
+                <span><i class="fas fa-phone"></i> +51 999 999 999</span><br>
+                <span><i class="fas fa-envelope"></i> info@aresditnes.com</span>
+            </div>
+        </div>
         <p>&copy; 2025 AresFitness. Todos los derechos reservados.</p>
     </footer>
 
