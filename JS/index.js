@@ -18,5 +18,11 @@
             });
             
         });
-        
+        // Agrega esto al final de tu archivo JS
+window.addEventListener('scroll', function() {
+    const parallaxSection = document.querySelector('.parallax-section');
+    const scrollPosition = window.pageYOffset;
+    
+    parallaxSection.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+});
     });
