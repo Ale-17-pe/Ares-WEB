@@ -1,16 +1,3 @@
-
-    // Verificación de sesión
-    String nombre = (String) session.getAttribute("nombre");
-    String correo = (String) session.getAttribute("correo");
-    String telefono = (String) session.getAttribute("telefono");
-    String plan = (String) session.getAttribute("plan");
-    String fechaRegistro = (String) session.getAttribute("fechaRegistro");
-
-    if (nombre == null || correo == null) {
-        response.sendRedirect("login.jsp");
-        return;
-    }
-%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Perfil - AresFitness</title>
     <link rel="stylesheet" href="Css/perfiluser.css">
+    <link rel="stylesheet" href="Css/HyF.css">
     <link rel="icon" href="Imagenes/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,16 +14,16 @@
     <!-- Header -->
     <header>
         <div class="logo-container">
-            <a href="index.jsp">
+            <a href="index.html">
                 <img src="Imagenes/logo.png" alt="Logo AresFitness">
             </a>
         </div>
         <nav>
             <ul>
-                <li><a href="Planes.html">PLANES</a></li>
+                <li><a href="planes.html">PLANES</a></li>
                 <li><a href="ubi.html">UBICACIÓN</a></li>
                 <li>
-                    <a href="login.jsp">
+                    <a href="login.html">
                         <img src="Imagenes/usuario.png" alt="Inicio de Sesión" id="icono-inicio-sesion">
                     </a>
                 </li>
@@ -47,7 +35,6 @@
     <main class="main-perfil">
         <section class="perfil-panel">
             <div class="perfil-contenedor">
-
                 <!-- Imagen de perfil -->
                 <div class="perfil-imagen">
                     <div class="imagen-wrapper">
@@ -55,7 +42,7 @@
                             <i class="fas fa-user-circle icono-usuario"></i>
                             <label class="icono-camara">
                                 <i class="fas fa-camera"></i>
-                                <input type="file" accept="image/*" hidden>
+                                <input type="file" id="foto-perfil" accept="image/*" hidden>
                                 <span class="tooltip">Cambiar foto</span>
                             </label>
                         </div>
@@ -68,12 +55,6 @@
                     </div>
                 </div>
 
-                <!-- Línea divisoria -->
-                <div class="linea-divisoria">
-                    <div class="circulo-divisor"></div>
-                    <div class="circulo-divisor"></div>
-                </div>
-
                 <!-- Datos del perfil -->
                 <div class="perfil-datos">
                     <h1 class="titulo-perfil">Mi Perfil</h1>
@@ -82,7 +63,7 @@
                         <div class="icono-dato"><i class="fas fa-user"></i></div>
                         <div class="contenido-dato">
                             <label>Nombre:</label>
-                            <p class="valor-dato"><%= nombre %></p>
+                            <p class="valor-dato" id="perfil-nombre">Cargando...</p>
                         </div>
                     </div>
 
@@ -90,7 +71,7 @@
                         <div class="icono-dato"><i class="fas fa-envelope"></i></div>
                         <div class="contenido-dato">
                             <label>Correo:</label>
-                            <p class="valor-dato"><%= correo %></p>
+                            <p class="valor-dato" id="perfil-correo">Cargando...</p>
                         </div>
                     </div>
 
@@ -98,7 +79,7 @@
                         <div class="icono-dato"><i class="fas fa-phone"></i></div>
                         <div class="contenido-dato">
                             <label>Teléfono:</label>
-                            <p class="valor-dato"><%= telefono %></p>
+                            <p class="valor-dato" id="perfil-telefono">Cargando...</p>
                         </div>
                     </div>
 
@@ -107,8 +88,8 @@
                         <div class="contenido-dato">
                             <label>Plan Ares Fitness:</label>
                             <p class="valor-dato">
-                                <span class="plan-tag plan-premium"><%= plan %></span>
-                                <span class="fecha-renovacion">Renovación: 15/12/2023</span>
+                                <span class="plan-tag" id="plan-tag">Plan</span>
+                                <span class="fecha-renovacion" id="fecha-renovacion">Renovación: </span>
                             </p>
                         </div>
                     </div>
@@ -117,34 +98,30 @@
                         <div class="icono-dato"><i class="fas fa-calendar-alt"></i></div>
                         <div class="contenido-dato">
                             <label>Miembro desde:</label>
-                            <p class="valor-dato"><%= fechaRegistro %></p>
+                            <p class="valor-dato" id="fecha-registro">Cargando...</p>
                         </div>
                     </div>
 
                     <div class="acciones-perfil">
-                        <a href="editperfil.jsp" class="btn-editar"><i class="fas fa-user-edit"></i> Editar perfil</a>
-                        <a href="progreso.jsp" class="btn-progreso"><i class="fas fa-chart-line"></i> Ver mi progreso</a>
+                        <a href="editperfil.html" class="btn-editar"><i class="fas fa-user-edit"></i> Editar perfil</a>
+                        <a href="progreso.html" class="btn-progreso"><i class="fas fa-chart-line"></i> Ver mi progreso</a>
                     </div>
-                    <!-- Dentro de tu progress-grid, añade esta tarjeta -->
-<div class="progress-card membership-card">
-  <div class="membership-header">
-    <i class="fas fa-crown membership-icon"></i>
-    <h2 class="card-title">Mi Membresía</h2>
-  </div>
-  <div class="membership-info">
-    <p class="membership-type">Plan Premium</p>
-    <p class="membership-expiry">Vence: 15/07/2024</p>
-  </div>
-  <div class="membership-benefits">
-    <ul>
-      <li><i class="fas fa-check"></i> Acceso ilimitado</li>
-      <li><i class="fas fa-check"></i> Entrenador personal</li>
-      <li><i class="fas fa-check"></i> Clases grupales</li>
-      <li><i class="fas fa-check"></i> Suplemento mensual</li>
-    </ul>
-  </div>
-  <button class="primary-btn membership-btn">Gestionar Membresía</button>
-</div>
+                    
+                    <!-- Tarjeta de Membresía -->
+                    <div class="progress-card membership-card">
+                        <div class="membership-header">
+                            <i class="fas fa-crown membership-icon"></i>
+                            <h2 class="card-title">Mi Membresía</h2>
+                        </div>
+                        <div class="membership-info">
+                            <p class="membership-type" id="membership-type">Plan</p>
+                            <p class="membership-expiry" id="membership-expiry">Vence: </p>
+                        </div>
+                        <div class="membership-benefits" id="membership-benefits">
+                            <!-- Beneficios se llenarán con JS -->
+                        </div>
+                        <button class="primary-btn membership-btn" id="renovar-membresia">Renovar Membresía</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -154,29 +131,28 @@
             <div class="tarjeta-estadistica">
                 <i class="fas fa-fire icono-estadistica"></i>
                 <h3>Días entrenados</h3>
-                <p class="valor-estadistica">24</p>
+                <p class="valor-estadistica" id="dias-entrenados">0</p>
                 <p class="meta-estadistica">Meta: 30 este mes</p>
             </div>
             <div class="tarjeta-estadistica">
                 <i class="fas fa-weight-hanging icono-estadistica"></i>
                 <h3>Logros</h3>
-                <p class="valor-estadistica">8</p>
+                <p class="valor-estadistica" id="logros">0</p>
                 <p class="meta-estadistica">¡Sigue así!</p>
             </div>
             <div class="tarjeta-estadistica">
                 <i class="fas fa-trophy icono-estadistica"></i>
                 <h3>Puntos</h3>
-                <p class="valor-estadistica">1,250</p>
+                <p class="valor-estadistica" id="puntos">0</p>
                 <p class="meta-estadistica">Top 15%</p>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
-    <p>&copy; 2025 AresFitness. Todos los derechos reservados.</p>
+        <p>&copy; 2025 AresFitness. Todos los derechos reservados.</p>
     </footer>
+    <script src="JS/perfil.js"></script>
 
-    <script src="Js/perfil-user.js"></script>
 </body>
 </html>

@@ -1,14 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
     <link rel="stylesheet" href="Css/HyF.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
+    <div class="container">
+        <div class="cart-header">
+            <h1 class="cart-title">
+                <i class="fas fa-shopping-cart"></i>
+                Tu Carrito
+            </h1>
+            <a href="index.html" class="continue-shopping">← Seguir comprando</a>
+        </div>
+        
+        <!-- Ejemplo con items -->
+        <div class="cart-items">
+            <div class="cart-item">
+                <img src="https://via.placeholder.com/100" alt="Producto" class="item-img">
+                <div class="item-details">
+                    <h3>Proteína Whey Gold Standard</h3>
+                    <p class="item-desc">Sabor vainilla - 2 lb</p>
+                    <p class="item-price">$39.99</p>
+                    <button class="remove-item">
+                        <i class="fas fa-trash-alt"></i> Eliminar
+                    </button>
+                </div>
+                <div class="item-actions">
+                    <div class="item-quantity">
+                        <button class="quantity-btn">-</button>
+                        <span>2</span>
+                        <button class="quantity-btn">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart-item">
+                <img src="https://via.placeholder.com/100" alt="Producto" class="item-img">
+                <div class="item-details">
+                    <h3>Creatina Monohidrato</h3>
+                    <p class="item-desc">300g - Pureza 99.9%</p>
+                    <p class="item-price">$24.99</p>
+                    <button class="remove-item">
+                        <i class="fas fa-trash-alt"></i> Eliminar
+                    </button>
+                </div>
+                <div class="item-actions">
+                    <div class="item-quantity">
+                        <button class="quantity-btn">-</button>
+                        <span>1</span>
+                        <button class="quantity-btn">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Resumen del pedido -->
+        <div class="cart-summary">
+            <h2>Resumen del Pedido</h2>
+            <div class="summary-row">
+                <span>Subtotal (3 productos)</span>
+                <span>$104.97</span>
+            </div>
+            <div class="summary-row">
+                <span>Envío</span>
+                <span>Gratis</span>
+            </div>
+            <div class="summary-row summary-total">
+                <span>Total</span>
+                <span>$104.97</span>
+            </div>
+            <button class="checkout-btn">Proceder al Pago</button>
+        </div>
+        
+        <!-- Estado vacío (alternativo) -->
+        <!--
+        <div class="empty-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <h2>Tu carrito está vacío</h2>
+            <p>Agrega productos para comenzar</p>
+            <a href="index.html" class="continue-shopping">Ver productos</a>
+        </div>
+        -->
+    </div>
 
-    </header>
+    <script>
+        // Aquí iría la lógica JavaScript para:
+        // - Actualizar cantidades
+        // - Eliminar items
+        // - Calcular totales
+        // - Guardar en localStorage
+    </script>
 </body>
 </html>

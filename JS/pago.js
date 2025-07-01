@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupModal: function() {
       // Continuar después del pago
       continueBtn.addEventListener('click', function() {
-        window.location.href = 'mi-cuenta.jsp';
+        window.location.href = 'perfiluser.html';
       });
       
       // Cerrar modal haciendo clic fuera

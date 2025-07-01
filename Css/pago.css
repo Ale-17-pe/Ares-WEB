@@ -101,45 +101,6 @@
   --input-bg: #2a2a2a;
 }
 
-/* Estilos Base */
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: var(--darker-bg);
-  color: var(--light-text);
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-}
-
-.payment-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Header */
-.payment-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--border-color);
-  margin-bottom: 30px;
-}
-
-.logo-link {
-  display: inline-block;
-}
-
-.logo {
-  height: 50px;
-  transition: transform 0.3s ease;
-}
-
-.logo:hover {
-  transform: scale(1.05);
-}
-
 .payment-steps {
   display: flex;
   gap: 30px;
