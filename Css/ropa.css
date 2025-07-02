@@ -262,7 +262,8 @@
 }
 
 .product-card button:hover {
-    background-color: #ff6b6b;
+    background-color: #ffaf01;
+    color: #000;
 }
 
 /* Productos Section */

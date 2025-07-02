@@ -3,96 +3,391 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compras</title>
-    <link rel="stylesheet" href="Css/HyF.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Carrito de Compras | Tienda de Ropa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos del carrito (puedes mover esto a tu archivo CSS) */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .cart-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .cart-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 450px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+        }
+        
+        .cart-overlay.active .cart-container {
+            transform: translateX(0);
+        }
+        
+        .cart-header {
+            padding: 20px;
+            background-color: #000;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cart-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-cart:hover {
+            color: #ffaf01;
+        }
+        
+        .cart-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-img {
+            width: 100px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-size: 1.1rem;
+            margin: 0 0 5px 0;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .cart-item-price {
+            font-size: 1rem;
+            color: #ffaf01;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+        
+        .cart-item-size {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0 0 10px 0;
+        }
+        
+        .item-quantity {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quantity-btn:hover {
+            background-color: #ddd;
+        }
+        
+        .item-quantity span {
+            margin: 0 10px;
+            font-weight: 600;
+        }
+        
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff6b6b;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-left: auto;
+            align-self: flex-start;
+        }
+        
+        .cart-footer {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-top: 1px solid #eee;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        
+        .cart-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .checkout-btn, .continue-shopping {
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .checkout-btn {
+            background-color: #000;
+            color: white;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #ffaf01;
+            color: #000;
+        }
+        
+        .continue-shopping {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        
+        .continue-shopping:hover {
+            background-color: #ddd;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 50px 20px;
+            color: #666;
+        }
+        
+        .empty-cart i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        
+        .empty-cart p {
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 576px) {
+            .cart-container {
+                max-width: 100%;
+            }
+            
+            .cart-item {
+                flex-direction: column;
+            }
+            
+            .cart-item-img {
+                width: 100%;
+                height: 180px;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="cart-header">
-            <h1 class="cart-title">
-                <i class="fas fa-shopping-cart"></i>
-                Tu Carrito
-            </h1>
-            <a href="index.html" class="continue-shopping">← Seguir comprando</a>
-        </div>
-        
-        <!-- Ejemplo con items -->
-        <div class="cart-items">
-            <div class="cart-item">
-                <img src="https://via.placeholder.com/100" alt="Producto" class="item-img">
-                <div class="item-details">
-                    <h3>Proteína Whey Gold Standard</h3>
-                    <p class="item-desc">Sabor vainilla - 2 lb</p>
-                    <p class="item-price">$39.99</p>
-                    <button class="remove-item">
-                        <i class="fas fa-trash-alt"></i> Eliminar
-                    </button>
-                </div>
-                <div class="item-actions">
-                    <div class="item-quantity">
-                        <button class="quantity-btn">-</button>
-                        <span>2</span>
-                        <button class="quantity-btn">+</button>
-                    </div>
-                </div>
+    <!-- Botón para abrir el carrito (debería estar en tu header) -->
+    <button id="cart-btn" style="position: fixed; right: 20px; top: 20px; z-index: 100; background-color: #000; color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 1.2rem; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+        <i class="fas fa-shopping-bag"></i>
+        <span id="cart-count" style="position: absolute; top: -5px; right: -5px; background-color: #ffaf01; color: #000; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;">3</span>
+    </button>
+
+    <!-- Overlay del carrito -->
+    <div class="cart-overlay">
+        <div class="cart-container">
+            <div class="cart-header">
+                <h2>Tu Carrito</h2>
+                <button class="close-cart">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
             
-            <div class="cart-item">
-                <img src="https://via.placeholder.com/100" alt="Producto" class="item-img">
-                <div class="item-details">
-                    <h3>Creatina Monohidrato</h3>
-                    <p class="item-desc">300g - Pureza 99.9%</p>
-                    <p class="item-price">$24.99</p>
+            <div class="cart-content">
+                <!-- Ejemplo de item en el carrito -->
+                <div class="cart-item">
+                    <img src="https://via.placeholder.com/100x120" alt="Producto" class="cart-item-img">
+                    <div class="cart-item-details">
+                        <h3 class="cart-item-title">Camiseta Oversize Negra</h3>
+                        <p class="cart-item-price">$29.99</p>
+                        <p class="cart-item-size">Talla: M</p>
+                        <div class="item-quantity">
+                            <button class="quantity-btn minus">-</button>
+                            <span>2</span>
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                    </div>
                     <button class="remove-item">
-                        <i class="fas fa-trash-alt"></i> Eliminar
+                        <i class="fas fa-trash"></i>
                     </button>
                 </div>
-                <div class="item-actions">
-                    <div class="item-quantity">
-                        <button class="quantity-btn">-</button>
-                        <span>1</span>
-                        <button class="quantity-btn">+</button>
+                
+                <!-- Segundo item de ejemplo -->
+                <div class="cart-item">
+                    <img src="https://via.placeholder.com/100x120" alt="Producto" class="cart-item-img">
+                    <div class="cart-item-details">
+                        <h3 class="cart-item-title">Jeans Slim Fit</h3>
+                        <p class="cart-item-price">$59.99</p>
+                        <p class="cart-item-size">Talla: 32</p>
+                        <div class="item-quantity">
+                            <button class="quantity-btn minus">-</button>
+                            <span>1</span>
+                            <button class="quantity-btn plus">+</button>
+                        </div>
                     </div>
+                    <button class="remove-item">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                
+                <!-- Estado cuando el carrito está vacío -->
+                <!-- <div class="empty-cart">
+                    <i class="fas fa-shopping-bag"></i>
+                    <h3>Tu carrito está vacío</h3>
+                    <p>Agrega algunos productos para comenzar</p>
+                    <button class="continue-shopping">Seguir comprando</button>
+                </div> -->
+            </div>
+            
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span>$119.97</span>
+                </div>
+                <div class="cart-buttons">
+                    <button class="checkout-btn">Proceder al pago</button>
+                    <button class="continue-shopping">Seguir comprando</button>
                 </div>
             </div>
         </div>
-        
-        <!-- Resumen del pedido -->
-        <div class="cart-summary">
-            <h2>Resumen del Pedido</h2>
-            <div class="summary-row">
-                <span>Subtotal (3 productos)</span>
-                <span>$104.97</span>
-            </div>
-            <div class="summary-row">
-                <span>Envío</span>
-                <span>Gratis</span>
-            </div>
-            <div class="summary-row summary-total">
-                <span>Total</span>
-                <span>$104.97</span>
-            </div>
-            <button class="checkout-btn">Proceder al Pago</button>
-        </div>
-        
-        <!-- Estado vacío (alternativo) -->
-        <!--
-        <div class="empty-cart">
-            <i class="fas fa-shopping-cart"></i>
-            <h2>Tu carrito está vacío</h2>
-            <p>Agrega productos para comenzar</p>
-            <a href="index.html" class="continue-shopping">Ver productos</a>
-        </div>
-        -->
     </div>
 
     <script>
-        // Aquí iría la lógica JavaScript para:
-        // - Actualizar cantidades
-        // - Eliminar items
-        // - Calcular totales
-        // - Guardar en localStorage
+        // JavaScript básico para funcionalidad del carrito
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartBtn = document.getElementById('cart-btn');
+            const cartOverlay = document.querySelector('.cart-overlay');
+            const closeCart = document.querySelector('.close-cart');
+            const continueShopping = document.querySelector('.continue-shopping');
+            
+            // Abrir carrito
+            cartBtn.addEventListener('click', function() {
+                cartOverlay.classList.add('active');
+            });
+            
+            // Cerrar carrito
+            function closeCartFunction() {
+                cartOverlay.classList.remove('active');
+            }
+            
+            closeCart.addEventListener('click', closeCartFunction);
+            continueShopping?.addEventListener('click', closeCartFunction);
+            
+            // Funcionalidad de cantidad
+            const quantityMinusBtns = document.querySelectorAll('.quantity-btn.minus');
+            const quantityPlusBtns = document.querySelectorAll('.quantity-btn.plus');
+            const removeItemBtns = document.querySelectorAll('.remove-item');
+            
+            quantityMinusBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const quantityElement = this.nextElementSibling;
+                    let quantity = parseInt(quantityElement.textContent);
+                    if (quantity > 1) {
+                        quantityElement.textContent = quantity - 1;
+                        updateCartTotal();
+                    }
+                });
+            });
+            
+            quantityPlusBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const quantityElement = this.previousElementSibling;
+                    let quantity = parseInt(quantityElement.textContent);
+                    quantityElement.textContent = quantity + 1;
+                    updateCartTotal();
+                });
+            });
+            
+            removeItemBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.closest('.cart-item').remove();
+                    updateCartTotal();
+                    // Aquí deberías actualizar también el contador del carrito
+                });
+            });
+            
+            // Función para actualizar el total
+            function updateCartTotal() {
+                const items = document.querySelectorAll('.cart-item');
+                let total = 0;
+                
+                items.forEach(item => {
+                    const priceElement = item.querySelector('.cart-item-price');
+                    const quantityElement = item.querySelector('.item-quantity span');
+                    
+                    const price = parseFloat(priceElement.textContent.replace('$', ''));
+                    const quantity = parseInt(quantityElement.textContent);
+                    
+                    total += price * quantity;
+                });
+                
+                document.querySelector('.cart-total span:last-child').textContent = '$' + total.toFixed(2);
+            }
+        });
     </script>
 </body>
 </html>
