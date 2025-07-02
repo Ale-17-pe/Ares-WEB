@@ -6,6 +6,7 @@
     <title>ROPA</title>
     <link rel="stylesheet" href="Css/HyF.css">
     <link rel="stylesheet" href="Css/ropa.css">
+    
 </head>
 <body>
     <header>
@@ -16,6 +17,7 @@
         </div>
         <nav>
             <ul> 
+                <!-- Dentro de <nav> <ul>, junto a los otros botones -->    
                 <li><a href="planes.html">PLANES</a></li>
                 <li><a href="ubi.html">UBICACION</a></li>
                 <li><a href="suple.html">SUPLEMENTOS</a></li>
@@ -30,7 +32,7 @@
                         <div class="login-btn__text">Entrar</div>
                     </button>
                 </a>
-                <a href="cart.html" class="cart-btn-link">
+                <a href="carrito.html" class="cart-btn-link">
                     <button class="cart-btn" id="cartButton">
                         <div class="cart-btn__icon">
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +64,6 @@
         </div>
     </section>
 
-
     <!-- Sección de Ropa por Género -->
     <section class="clothing-section">
         <div class="gender-tabs">
@@ -87,19 +88,22 @@
                         <img src="Imagenes/polo basico.png" alt="Polo deportivo hombre">
                         <h4>Polo Performance</h4>
                         <p>$34.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Polo deportivo para hombre en tallas S, M, L y XL. Tela transpirable y de secado rápido.</p>
+                        <button onclick="openProductModal(this, 'Imagenes/polo basico.png')">Añadir al carrito</button>
                     </div>
                     <div class="product-card">
                         <img src="Imagenes/paloMangaC.png" alt="Polo manga corta hombre">
                         <h4>Polo Clásico</h4>
                         <p>$29.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Polo de manga corta en tallas S, M, L. Diseño clásico para entrenamiento.</p>
+                        <button onclick="openProductModal(this, 'Imagenes/paloMangaC.png')">Añadir al carrito</button>
                     </div>
                     <div class="product-card">
                         <img src="https://gymratswear.com/cdn/shop/files/BLACK-Photoroom_2_cfef010f-bd0f-403a-82ae-ee2ffa60f28b.png?v=1735435603&width=640" alt="Polo entrenamiento hombre">
                         <h4>Polo Active</h4>
                         <p>$39.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Polo para entrenamiento intenso en tallas M, L, XL. Material elástico y resistente.</p>
+                        <button onclick="openProductModal(this, 'https://gymratswear.com/cdn/shop/files/BLACK-Photoroom_2_cfef010f-bd0f-403a-82ae-ee2ffa60f28b.png?v=1735435603&width=640')">Añadir al carrito</button>
                     </div>
                 </div>
             </div>
@@ -111,19 +115,22 @@
                         <img src="https://cdn.shopify.com/s/files/1/0156/6146/files/HeritageRawEdge5ShortsGSOnyxGreyA2C6V-GB7N-0043_a32860e8-3a63-4fa4-a157-22476d7d2751_1920x.jpg?v=1746089230" alt="Short deportivo hombre">
                         <h4>Short Training</h4>
                         <p>$24.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Short para entrenamiento en tallas S, M, L. Con bolsillos laterales.</p>
+                        <button onclick="openProductModal(this, 'https://cdn.shopify.com/s/files/1/0156/6146/files/HeritageRawEdge5ShortsGSOnyxGreyA2C6V-GB7N-0043_a32860e8-3a63-4fa4-a157-22476d7d2751_1920x.jpg?v=1746089230')">Añadir al carrito</button>
                     </div>
                     <div class="product-card">
                         <img src="https://cdn.shopify.com/s/files/1/0156/6146/files/SportsShortIteration2GSHeavyBlue-GSIronBlueA2C2U-UCY1-1290-0239_1920x.jpg?v=1744978693" alt="Short running hombre">
                         <h4>Short Running</h4>
                         <p>$27.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Short para running en tallas S, M, L, XL. Ligero y transpirable.</p>
+                        <button onclick="openProductModal(this, 'https://cdn.shopify.com/s/files/1/0156/6146/files/SportsShortIteration2GSHeavyBlue-GSIronBlueA2C2U-UCY1-1290-0239_1920x.jpg?v=1744978693')">Añadir al carrito</button>
                     </div>
                     <div class="product-card">
                         <img src="https://cdn.shopify.com/s/files/1/0156/6146/files/GFXLifting4MultiGraphicShortRDEGSBlackA2B1G-BB2J-0570_623bfd02-30a9-4958-8aeb-dfe54078796a_1920x.jpg?v=1746089230" alt="Short básico hombre">
                         <h4>Short Essential</h4>
                         <p>$22.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Short básico para gimnasio en tallas S, M, L. Corte clásico.</p>
+                        <button onclick="openProductModal(this, 'https://cdn.shopify.com/s/files/1/0156/6146/files/GFXLifting4MultiGraphicShortRDEGSBlackA2B1G-BB2J-0570_623bfd02-30a9-4958-8aeb-dfe54078796a_1920x.jpg?v=1746089230')">Añadir al carrito</button>
                     </div>
                 </div>
             </div>
@@ -135,19 +142,22 @@
                         <img src="https://gymratswear.com/cdn/shop/files/HOODIEBLACKFRONTAL_ffbb7d46-7ef0-4095-9ba2-6181b419a717.png?v=1704485606&width=640" alt="Polera deportiva hombre">
                         <h4>Polera Workout</h4>
                         <p>$44.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Polera deportiva en tallas S, M, L, XL. Ideal para entrenamientos.</p>
+                        <button onclick="openProductModal(this, 'https://gymratswear.com/cdn/shop/files/HOODIEBLACKFRONTAL_ffbb7d46-7ef0-4095-9ba2-6181b419a717.png?v=1704485606&width=640')">Añadir al carrito</button>
                     </div>
                     <div class="product-card">
                         <img src="https://gymratswear.com/cdn/shop/files/HOODIECREMAFRONTAL_b6b3a6ce-9c45-4fce-bcb2-5162753686d3.png?v=1704486181&width=640" alt="Polera entrenamiento hombre">
                         <h4>Polera Training</h4>
                         <p>$49.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Polera para entrenamiento en tallas M, L, XL. Material premium.</p>
+                        <button onclick="openProductModal(this, 'https://gymratswear.com/cdn/shop/files/HOODIECREMAFRONTAL_b6b3a6ce-9c45-4fce-bcb2-5162753686d3.png?v=1704486181&width=640')">Añadir al carrito</button>
                     </div>
                     <div class="product-card">
                         <img src="https://cdn.shopify.com/s/files/1/0156/6146/files/A_PowerOriginalsHoodieCharcoalCoreMarlA2C9H-GBBB-1262_391700d8-8ec4-4ddb-9d76-a3ce4d42eb27_1920x.jpg?v=1743417072" alt="Polera básica hombre">
                         <h4>Polera Essential</h4>
                         <p>$39.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Polera básica en tallas S, M, L. Diseño minimalista y cómodo.</p>
+                        <button onclick="openProductModal(this, 'https://cdn.shopify.com/s/files/1/0156/6146/files/A_PowerOriginalsHoodieCharcoalCoreMarlA2C9H-GBBB-1262_391700d8-8ec4-4ddb-9d76-a3ce4d42eb27_1920x.jpg?v=1743417072')">Añadir al carrito</button>
                     </div>
                 </div>
             </div>
@@ -171,19 +181,22 @@
                         <img src="https://home.ripley.com.pe/Attachment/WOP_5/2020336031071/2020336031071_2.jpg" alt="Polo deportivo mujer">
                         <h4>Polo Sport</h4>
                         <p>$32.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Polo deportivo para mujer en tallas XS, S, M. Tela transpirable.</p>
+                        <button onclick="openProductModal(this, 'https://home.ripley.com.pe/Attachment/WOP_5/2020336031071/2020336031071_2.jpg')">Añadir al carrito</button>
                     </div>
                     <div class="product-card">
                         <img src="https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/61ba686e6ada4009b43f690f3bf89881_9366/Polo_Corto_Essentials_Verde_JD5338_01_laydown.jpg" alt="Polo ajustado mujer">
                         <h4>Polo Fit</h4>
                         <p>$29.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Polo ajustado en tallas XS, S, M, L. Ideal para entrenamiento.</p>
+                        <button onclick="openProductModal(this, 'https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/61ba686e6ada4009b43f690f3bf89881_9366/Polo_Corto_Essentials_Verde_JD5338_01_laydown.jpg')">Añadir al carrito</button>
                     </div>
                     <div class="product-card">
                         <img src="https://http2.mlstatic.com/D_NQ_NP_2X_817152-MPE77849157166_072024-F-polo-oversized-gymshark-mujer-original.webp" alt="Polo casual mujer">
                         <h4>Polo Casual</h4>
                         <p>$27.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Polo casual oversize en tallas S, M, L. Estilo relajado.</p>
+                        <button onclick="openProductModal(this, 'https://http2.mlstatic.com/D_NQ_NP_2X_817152-MPE77849157166_072024-F-polo-oversized-gymshark-mujer-original.webp')">Añadir al carrito</button>
                     </div>
                 </div>
             </div>
@@ -195,19 +208,22 @@
                         <img src="https://cdn.shopify.com/s/files/1/1367/5207/files/SUN_C_bigger_Athlete_6_1920x.jpg?v=1739125238" alt="Short deportivo mujer">
                         <h4>Short Training</h4>
                         <p>$26.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Short para entrenamiento en tallas XS, S, M. Corte alto.</p>
+                        <button onclick="openProductModal(this, 'https://cdn.shopify.com/s/files/1/1367/5207/files/SUN_C_bigger_Athlete_6_1920x.jpg?v=1739125238')">Añadir al carrito</button>
                     </div>
                     <div class="product-card">
                         <img src="https://cdn.shopify.com/s/files/1/1367/5207/files/Adapt-x-whitney_Static_eComm_PDP_1692x2018_09_1e1a8e33-d2ea-4aff-9579-36ea4bc59773_1920x.jpg?v=1740661798" alt="Short GYM mujer">
                         <h4>Short Yoga</h4>
                         <p>$24.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Short para yoga en tallas S, M, L. Material elástico.</p>
+                        <button onclick="openProductModal(this, 'https://cdn.shopify.com/s/files/1/1367/5207/files/Adapt-x-whitney_Static_eComm_PDP_1692x2018_09_1e1a8e33-d2ea-4aff-9579-36ea4bc59773_1920x.jpg?v=1740661798')">Añadir al carrito</button>
                     </div>
                     <div class="product-card">
                         <img src="https://cdn.shopify.com/s/files/1/0156/6146/files/StitchFeatureWovenPantGSBlackB6A9S-BB2J841_d8d7d834-dc0d-44d5-85cd-b08409fa9e69_1920x.jpg?v=1705568074" alt="Pants mujer">
                         <h4>Short Running</h4>
                         <p>$28.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Short para running en tallas XS, S, M, L. Transpirable.</p>
+                        <button onclick="openProductModal(this, 'https://cdn.shopify.com/s/files/1/0156/6146/files/StitchFeatureWovenPantGSBlackB6A9S-BB2J841_d8d7d834-dc0d-44d5-85cd-b08409fa9e69_1920x.jpg?v=1705568074')">Añadir al carrito</button>
                     </div>
                 </div>
             </div>
@@ -219,19 +235,22 @@
                         <img src="https://cdn.shopify.com/s/files/1/0156/6146/files/GFXBULKINGSEASONBRUSHEDHOODIEGSBlackB1C9K-BB2J-0769_e3e7debd-c54f-4cd9-b6a0-40ed97e206d8_1920x.jpg?v=1737639236" alt="Polera deportiva mujer">
                         <h4>Polera Workout</h4>
                         <p>$42.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Polera deportiva en tallas S, M, L. Ideal para entrenamientos.</p>
+                        <button onclick="openProductModal(this, 'https://cdn.shopify.com/s/files/1/0156/6146/files/GFXBULKINGSEASONBRUSHEDHOODIEGSBlackB1C9K-BB2J-0769_e3e7debd-c54f-4cd9-b6a0-40ed97e206d8_1920x.jpg?v=1737639236')">Añadir al carrito</button>
                     </div>
                     <div class="product-card">
                         <img src="https://cdn.shopify.com/s/files/1/0156/6146/files/GFXBULKINGSEASONBRUSHEDHOODIEGSLightGreyMarlB1C9K-GCHR-0799_10c5c5b6-acf4-4e70-9e06-2bab996dc556_1920x.jpg?v=1733408261" alt="Polera entrenamiento mujer">
                         <h4>Polera Training</h4>
                         <p>$47.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Polera para entrenamiento en tallas XS, S, M. Material premium.</p>
+                        <button onclick="openProductModal(this, 'https://cdn.shopify.com/s/files/1/0156/6146/files/GFXBULKINGSEASONBRUSHEDHOODIEGSLightGreyMarlB1C9K-GCHR-0799_10c5c5b6-acf4-4e70-9e06-2bab996dc556_1920x.jpg?v=1733408261')">Añadir al carrito</button>
                     </div>
                     <div class="product-card">
                         <img src="https://home.ripley.com.pe/Attachment/WOP_5/2020324359668/2020324359668_2.jpg" alt="Polera básica mujer">
                         <h4>Polera Essential</h4>
                         <p>$37.99</p>
-                        <button>Añadir al carrito</button>
+                        <p class="descripcion">Polera básica en tallas S, M, L. Diseño minimalista y cómodo.</p>
+                        <button onclick="openProductModal(this, 'https://home.ripley.com.pe/Attachment/WOP_5/2020324359668/2020324359668_2.jpg')">Añadir al carrito</button>
                     </div>
                 </div>
             </div>
@@ -328,9 +347,47 @@
         </div>
     </section>
 
-    <footer>
-        <p>Copyright &copy; 2025 AresFitness</p>
-    </footer>
+<footer>
+            <div id="LOGO">
+                <a href="index.html" target="_blank"><img id="LOGO" src="Imagenes/logo.png" alt="Logo Ares Fitness"><br><br></a>
+            </div>
+
+            <div class="footer_container">
+
+                <!-- SecciÃ³n izquierda: Redes y contacto -->
+                <div class="redes-sociales">
+                    <strong>Redes Sociales:</strong><br><br>
+                    <a href="#" target="_blank"><img src="Imagenes/FB.png" alt="Facebook" class="icono-red"></a>
+                    <a href="https://www.instagram.com/aresfitness.peru/" target="_blank"><img src="Imagenes/Insta.png" alt="Instagram" class="icono-red"></a>
+                    <a href="#" target="_blank"><img src="Imagenes/Tiktok.png" alt="Tiktok" class="icono-red"></a>
+                    <a href="#" target="_blank"><img src="Imagenes/X.png" alt="X" class="icono-red"></a><br>
+                    <br><br>
+                    <strong>CONTACTANOS:</strong><br><br>
+                    <a href="#" target="_blank">
+                        <img src="Imagenes/WhatsApp.png" alt="WhatsApp" style="width: 20px; vertical-align: middle;"></a>
+                    <br><br>
+                    <a href="#" target="_blank">
+                        <img src="Imagenes/Gmail.png" alt="Correo" style="width: 20px; vertical-align: middle;"></a> 
+
+                </div>
+                <!-- SecciÃ³n central: Enlaces -->
+                <div class="footer-section">
+                    <a href="#">TERMINOS Y CONDICIONES</a><br><br><br>
+                    <a href="#">POLITICAS Y PRIVACIDAD</a><br><br><br>
+                    <a href="#">QUEJAS Y RECLAMOS</a>
+                </div>
+
+                <!-- SecciÃ³n derecha: soporte y libro -->
+                <div class="footer-section" style="text-align: center;">
+                    <a href="#">SOPORTE TECNICO</a><br><br><br>
+                    <a href="index.html">ARES FITNESS</a><br><br><br><br>
+                    <span style="color: #00ccff; font-weight: bold;"></span><br>
+                    <img src="Imagenes/LibroR.png" alt="Libro de Reclamaciones" style="width: 150px;">
+                </div>
+            </div>
+
+    <p>&copy; 2025 AresFitness. Todos los derechos reservados.</p>
+</footer>   
 
     <div id="confirmacionModal" class="modal-overlay">
         <div class="modal-content">
@@ -354,149 +411,6 @@
         </div>
     </div>
 
-    <script>
-        let carrito = [];
-        const modal = document.getElementById('confirmacionModal');
-        const modalNombreProducto = document.getElementById('modalNombreProducto');
-        const modalProductoImagen = document.getElementById('modalProductoImagen');
-        const modalDescripcionProducto = document.getElementById('modalDescripcionProducto');
-        const modalTallasDisponibles = document.getElementById('modalTallasDisponibles');
-        const modalPrecioProducto = document.getElementById('modalPrecioProducto');
-        let currentConfirmarCompraBtn = document.getElementById('confirmarCompraBtn');
-        const cartCountSpan = document.querySelector('.cart-count');
-
-        function updateCartCount() {
-            cartCountSpan.innerText = carrito.length;
-        }
-
-        function cerrarModal() {
-            modal.classList.remove('is-open');
-        }
-
-        function parseSizesFromText(description, productName) {
-            let extractedSizes = [];
-            const regex = /(?:en tallas|Tallas disponibles:|Tallas:)\s*([A-Z0-9,\sXLMEDSGYUÍCAy]+)/i;
-            const match = description.match(regex);
-
-            if (match && match[1]) {
-                let sizeString = match[1];
-                sizeString = sizeString.split('.')[0];
-                sizeString = sizeString.replace(/\s*y\s+/gi, ',').replace(/,\s*$/g, '');
-                extractedSizes = sizeString.split(/[\s,]+/)
-                                        .map(s => s.trim().toUpperCase())
-                                        .filter(s => /^[SMLXG0-9]+$/.test(s) && s !== '');
-            }
-            return [...new Set(extractedSizes)];
-        }
-
-        function openProductModal(boton, imageUrl) {
-            const productoDiv = boton.parentElement;
-            const nombre = productoDiv.querySelector('h4').innerText;
-            const descripcion = productoDiv.querySelector('p.descripcion').innerText;
-            const precio = productoDiv.querySelector('p:last-of-type').innerText;
-
-            modalNombreProducto.innerText = nombre;
-            modalDescripcionProducto.innerText = descripcion;
-            modalPrecioProducto.innerText = `Precio: ${precio}`;
-            modalProductoImagen.src = imageUrl;
-            modalProductoImagen.alt = nombre;
-
-            modalTallasDisponibles.innerHTML = '<p><strong>Talla:</strong></p>';
-            let sizes = parseSizesFromText(descripcion, nombre);
-            const tallasContainer = document.createElement('div');
-            tallasContainer.className = 'tallas-radio-group';
-
-            const apparelKeywords = ["camiseta", "top", "leggins", "shorts", "polo", "guantes", "cinturón"];
-            const isApparelOrSizedAccessory = apparelKeywords.some(keyword => nombre.toLowerCase().includes(keyword));
-
-            if (sizes.length === 0 && isApparelOrSizedAccessory) {
-                const lowerProductName = nombre.toLowerCase();
-                if (lowerProductName.includes("cinturón")) {
-                     sizes = ['M', 'L', 'XL'];
-                } else if (lowerProductName.includes("guantes")) {
-                     sizes = ['S', 'M', 'L'];
-                } else if (lowerProductName.includes("camiseta") || lowerProductName.includes("top") || lowerProductName.includes("leggins") || lowerProductName.includes("polo") || lowerProductName.includes("shorts") ) {
-                     sizes = ['S', 'M', 'L', 'XL'];
-                }
-            }
-
-            if (sizes.length > 0) {
-                sizes.forEach((talla, index) => {
-                    const radioId = `talla-${nombre.replace(/\s+/g, '-')}-${talla.replace(/\s+/g, '-')}-${index}`;
-                    const radioInput = document.createElement('input');
-                    radioInput.type = 'radio';
-                    radioInput.name = 'tallaSeleccionada';
-                    radioInput.value = talla;
-                    radioInput.id = radioId;
-                    if (index === 0) radioInput.checked = true;
-
-                    const radioLabel = document.createElement('label');
-                    radioLabel.htmlFor = radioId;
-                    radioLabel.textContent = talla;
-
-                    tallasContainer.appendChild(radioInput);
-                    tallasContainer.appendChild(radioLabel);
-                });
-                modalTallasDisponibles.appendChild(tallasContainer);
-            } else {
-                const nonSizedItems = ["toalla", "mochila", "tapete", "cuerda", "bandas"];
-                const isNonSized = nonSizedItems.some(item => nombre.toLowerCase().includes(item));
-                if (isNonSized) {
-                    modalTallasDisponibles.innerHTML = '<p><strong>Talla:</strong> No aplica</p>';
-                } else {
-                     modalTallasDisponibles.innerHTML = '<p><strong>Talla:</strong> Única / Consultar</p>';
-                }
-            }
-
-            const newButton = currentConfirmarCompraBtn.cloneNode(true);
-            currentConfirmarCompraBtn.parentNode.replaceChild(newButton, currentConfirmarCompraBtn);
-            currentConfirmarCompraBtn = newButton;
-
-            currentConfirmarCompraBtn.onclick = function() {
-                const tallaSeleccionadaRadio = document.querySelector('#confirmacionModal input[name="tallaSeleccionada"]:checked');
-                let tallaFinal = 'No especificada';
-
-                if (tallaSeleccionadaRadio) {
-                    tallaFinal = tallaSeleccionadaRadio.value;
-                } else {
-                    const tallaInfoP = modalTallasDisponibles.querySelector('p:last-child');
-                    if (tallaInfoP) {
-                        if (tallaInfoP.innerText.includes("No aplica")) {
-                           tallaFinal = "No aplica";
-                        } else if (tallaInfoP.innerText.includes("Única")) {
-                           tallaFinal = "Única";
-                        }
-                    }
-                }
-
-                carrito.push({ nombre: modalNombreProducto.innerText, precio: precio, talla: tallaFinal });
-                updateCartCount();
-                alert(`Agregado al carrito: ${modalNombreProducto.innerText} - Talla: ${tallaFinal} - ${precio}\n\nCarrito actual:\n${carrito.map(p => `${p.nombre} (Talla: ${p.talla}) - ${p.precio}`).join('\n')}`);
-                console.log(carrito);
-                cerrarModal();
-            };
-
-            modal.classList.add('is-open');
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                cerrarModal();
-            }
-        }
-
-        function showGender(gender) {
-            document.querySelectorAll('.gender-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            document.querySelectorAll('.gender-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            document.getElementById(`${gender}-section`).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
-    </script>
+    <script src="JS/Ropa.js"></script>
 </body>
 </html>
