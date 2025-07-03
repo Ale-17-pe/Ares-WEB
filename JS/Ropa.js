@@ -1,4 +1,4 @@
-     let carrito = [];
+                 let carrito = [];
         const modal = document.getElementById('confirmacionModal');
         const modalNombreProducto = document.getElementById('modalNombreProducto');
         const modalProductoImagen = document.getElementById('modalProductoImagen');
