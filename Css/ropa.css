@@ -313,7 +313,7 @@
 .producto p:last-of-type {
     font-size: 1.1rem;
     margin: 0 20px 15px;
-    color: #ff6b6b;
+    color: #ffffff;
     font-weight: 600;
 }
 
@@ -331,7 +331,8 @@
 }
 
 .producto button:hover {
-    background-color: #000000;
+    background-color: #ffaf01;
+    color: rgb(0, 0, 0);
 }
 
 /* Modal Styles */
@@ -475,8 +476,6 @@
 .cancelar-btn:hover {
     background-color: #000000;
 }
-
-
 
 /* Responsive Design */
 @media (max-width: 1024px) {
