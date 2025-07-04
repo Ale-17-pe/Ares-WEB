@@ -3,26 +3,47 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>AresFitness</title>
+        <title>AresFitness - Ubicación</title>
+        <link rel="stylesheet" href="Css/HyF.css">
         <link rel="stylesheet" href="Css/ubi.css">
-        <link rel="icon" href="Imagenes/logo.png">
+        <link rel="icon" href="Imagenes/logo.png" type="image/png">
     </head>
     <body>
         <header>
-            <div class="logo-container"><a href=index.jsp>
-                    <img src="Imagenes/logo.png" alt="Logo AresFitness"></a>
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="Imagenes/logo.png" alt="Logo AresFitness">
+                </a>
             </div>
             <nav>
                 <ul> 
-                    <li><a href="planes.jsp">PLANES</a></li>
-                    <li><a href="ubi.jsp">UBICACIÓN</a></li>
-                    <li><div class="icon-container">
-                            <a href="login.jsp">
-                                <img src="Imagenes/usuario.png" alt="Inicio de Sesión" id="icono-inicio-sesion">
-                            </a>
+                    <li><a href="planes.html">PLANES</a></li>
+                    <li><a href="ubi.html">UBICACIÓN</a></li>
+                    <li><a href="suple.html">SUPLEMENTOS</a></li>
+                    <li><a href="ropa.html">ROPA</a></li>
+                    
+                    <!--Login de usuario-->
+                    <a href="login.html"><button class="login-btn" id="loginButton">
+                        <div class="login-btn__icon">
+                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Icono de usuario/login -->
+                            <path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/>
+                        </svg>
+                         </div>
+                        <div class="login-btn__text">Entrar</div>
+                    </button></a>
 
-                        </div>  
-                    </li>
+                    <!--Carrito de compras-->
+                    <a href="carrito.html" class="cart-btn-link">
+                        <button class="cart-btn" id="cartButton">
+                          <div class="cart-btn__icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M17 18a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-1.11.89-2 2-2M1 2h3.27l.94 2H20a1 1 0 0 1 1 1c0 .17-.05.34-.12.5l-3.58 6.47c-.34.61-1 1.03-1.8 1.03H8.1l-.9 1.63-.03.12a.25.25 0 0 0 .25.25H19v2H7a2 2 0 0 1-2-2c0-.35.09-.68.24-.96l1.36-2.45L3 4H1V2m6 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-1.11.89-2 2-2m9-7l2.78-5H6.14l2.36 5H16z"/>
+                            </svg>
+                            <span class="cart-count">0</span>
+                          </div>
+                        </button>
+                    </a>
                 </ul>
             </nav>
         </header>
@@ -51,14 +72,13 @@
             </div>
         </section>
 
-        <!--&nbsp; espacio en blanco-->
         <footer>
             <div id="LOGO">
-                <a href="index.jsp" target="_blank"><img id="LOGO" src="Imagenes/logo.png" alt="Logo Ares Fitness"><br><br></a>
+                <a href="index.html" target="_blank"><img id="LOGO" src="Imagenes/logo.png" alt="Logo Ares Fitness"><br><br></a>
             </div>
 
             <div class="footer_container">
-                <!-- SecciÃ³n izquierda: Redes y contacto -->
+                <!-- Sección izquierda: Redes y contacto -->
                 <div class="redes-sociales">
                     <strong>Redes Sociales:</strong><br><br>
                     <a href="#" target="_blank"><img src="Imagenes/FB.png" alt="Facebook" class="icono-red"></a>
@@ -74,22 +94,24 @@
                         <img src="Imagenes/Gmail.png" alt="Correo" style="width: 20px; vertical-align: middle;"></a> 
 
                 </div>
-                <!-- SecciÃ³n central: Enlaces -->
+                <!-- Sección central: Enlaces -->
                 <div class="footer-section">
                     <a href="#">TERMINOS Y CONDICIONES</a><br><br><br>
                     <a href="#">POLITICAS Y PRIVACIDAD</a><br><br><br>
                     <a href="#">QUEJAS Y RECLAMOS</a>
                 </div>
 
-                <!-- SecciÃ³n derecha: soporte y libro -->
+                <!-- Sección derecha: soporte y libro -->
                 <div class="footer-section" style="text-align: center;">
                     <a href="#">SOPORTE TECNICO</a><br><br><br>
-                    <a href="index.jsp">ARES FITNESS</a><br><br><br><br>
+                    <a href="index.html">ARES FITNESS</a><br><br><br><br>
                     <span style="color: #00ccff; font-weight: bold;"></span><br>
                     <img src="Imagenes/LibroR.png" alt="Libro de Reclamaciones" style="width: 150px;">
                 </div>
             </div>
-            <p>&copy; COPYRIGHT</p>
+            <p>&copy; 2025 AresFitness. Todos los derechos reservados.</p>
         </footer>
+        
+        <script src="JS/carrito.js"></script>
     </body>
 </html>
