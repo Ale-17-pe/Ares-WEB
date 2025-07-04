@@ -159,6 +159,70 @@
         <p>&copy; 2025 AresFitness. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="JS/planes.js"></script>
+    <!-- Agregar este script al final de planes.html -->
+<script src="JS/cart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Verificar si el usuario está logueado
+  const usuarioId = localStorage.getItem('usuarioId');
+  
+  if (!usuarioId) {
+    // Redirigir a login si no está logueado
+    window.location.href = 'login.html';
+    return;
+  }
+  
+  // Inicializar carrito
+  const carrito = new Carrito(usuarioId);
+  
+  // Botones "MUTAR" (añadir al carrito)
+  const botonesMutar = document.querySelectorAll('.btn-magic');
+  
+  botonesMutar.forEach(boton => {
+    boton.addEventListener('click', async function(e) {
+      e.preventDefault();
+      
+      // Obtener el plan seleccionado (simplificado)
+      const planCard = this.closest('.plan-card');
+      const planNombre = planCard.querySelector('h2').textContent;
+      
+      try {
+        // Buscar el producto en la base de datos
+        const { query } = require('./database');
+        const [producto] = await query(
+          'SELECT id FROM productos WHERE nombre = ? AND tipo = "membresia" LIMIT 1',
+          [planNombre]
+        );
+        
+        if (producto) {
+          await carrito.agregarProducto(producto.id);
+          alert('Plan añadido al carrito');
+          
+          // Actualizar contador del carrito
+          actualizarContadorCarrito();
+        } else {
+          alert('Error: Plan no encontrado');
+        }
+      } catch (error) {
+        console.error('Error al agregar al carrito:', error);
+        alert('Error al agregar al carrito');
+      }
+    });
+  });
+  
+  // Función para actualizar el contador del carrito
+  async function actualizarContadorCarrito() {
+    const contador = document.getElementById('contador-carrito');
+    if (contador) {
+      await carrito.cargarCarrito();
+      contador.textContent = carrito.items.length;
+      contador.style.display = carrito.items.length > 0 ? 'block' : 'none';
+    }
+  }
+  
+  // Inicializar contador
+  actualizarContadorCarrito();
+});
+</script>
 </body>
 </html>
