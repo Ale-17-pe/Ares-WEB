@@ -311,4 +311,37 @@ document.addEventListener('DOMContentLoaded', function() {
   peruvianPayment.init();
   cardHandler.init();
   formHandler.init();
+  // Agregar este script al final de pago.html
+document.addEventListener('DOMContentLoaded', async function() {
+  const usuarioId = localStorage.getItem('usuarioId');
+  
+  if (!usuarioId) {
+    window.location.href = 'login.html';
+    return;
+  }
+  
+  const carrito = new Carrito(usuarioId);
+  await carrito.cargarCarrito();
+  
+  const total = carrito.calcularTotal() * 1.18; // +IGV
+  
+  // Actualizar total en la página
+  document.querySelectorAll('.detail-row.total span').forEach(el => {
+    el.textContent = `S/ ${total.toFixed(2)}`;
+  });
+  
+  document.getElementById('continueBtn').addEventListener('click', async function() {
+    try {
+      // Crear orden con el método de pago seleccionado
+      const metodoPago = document.querySelector('.method-tab.active').dataset.method;
+      const ordenId = await carrito.crearOrden(metodoPago);
+      
+      // Mostrar modal de éxito
+      document.getElementById('successModal').style.display = 'flex';
+    } catch (error) {
+      console.error('Error al procesar pago:', error);
+      alert('Error al procesar el pago: ' + error.message);
+    }
+  });
+});
 });
