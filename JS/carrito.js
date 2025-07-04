@@ -107,28 +107,45 @@ function updateCartCount() {
 
 // Función para actualizar la página completa del carrito
 function updateCartPage() {
+    console.log('🔄 Actualizando página del carrito...');
+    
     const cartItemsList = document.getElementById('cart-items-list');
     const cartTotalSection = document.getElementById('cart-total-section');
     const emptyCartMessage = document.getElementById('empty-cart-message');
     const cartContent = document.querySelector('.cart-content');
     const recommendationsList = document.getElementById('recommendations-list');
 
+    if (!cartItemsList || !cartTotalSection || !emptyCartMessage || !cartContent) {
+        console.error('❌ Elementos del carrito no encontrados');
+        return;
+    }
+
+    console.log('📦 Carrito actual:', cart);
+    console.log('📊 Items en carrito:', cart.length);
+
     if (cart.length === 0) {
+        console.log('🛒 Carrito vacío, mostrando mensaje');
         // Mostrar mensaje de carrito vacío
+        cartContent.classList.add('hidden');
         cartContent.style.display = 'none';
+        emptyCartMessage.classList.remove('hidden');
         emptyCartMessage.style.display = 'block';
         return;
     }
 
+    console.log('📋 Carrito con productos, mostrando contenido');
     // Mostrar contenido del carrito
+    cartContent.classList.remove('hidden');
     cartContent.style.display = 'grid';
+    emptyCartMessage.classList.add('hidden');
     emptyCartMessage.style.display = 'none';
 
     // Actualizar lista de items
     cartItemsList.innerHTML = '';
     let total = 0;
 
-    cart.forEach(item => {
+    cart.forEach((item, index) => {
+        console.log(`📝 Procesando item ${index + 1}:`, item);
         const priceNum = parseFloat(item.price.replace(/[^\d.]/g, '')) || 0;
         const itemTotal = priceNum * item.qty;
         total += itemTotal;
@@ -137,11 +154,20 @@ function updateCartPage() {
         cartItemsList.appendChild(cartItemElement);
     });
 
+    console.log('💰 Total calculado:', total);
+
     // Actualizar total
     updateCartTotal(cartTotalSection, total);
 
     // Actualizar recomendaciones
-    updateRecommendations(recommendationsList);
+    if (recommendationsList) {
+        console.log('🎯 Actualizando recomendaciones...');
+        updateRecommendations(recommendationsList);
+    } else {
+        console.log('⚠️ No se encontró la lista de recomendaciones');
+    }
+    
+    console.log('✅ Página del carrito actualizada');
 }
 
 // Función para crear elemento de item del carrito
@@ -551,6 +577,8 @@ function setAddToCartListeners() {
 // === INICIALIZACIÓN ===
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Inicializando carrito...');
+    
     // Cargar carrito
     loadCart();
     
@@ -565,6 +593,29 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Actualizar display inicial
     updateCartDisplay();
+    
+    // Auto-test si estamos en la página de carrito (para debugging)
+    if (window.location.pathname.includes('carrito.html')) {
+        console.log('📋 Página de carrito detectada');
+        
+        // Verificar si hay elementos necesarios
+        const cartItemsList = document.getElementById('cart-items-list');
+        const recommendationsList = document.getElementById('recommendations-list');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        
+        console.log('Elementos detectados:', {
+            cartItemsList: !!cartItemsList,
+            recommendationsList: !!recommendationsList,
+            emptyCartMessage: !!emptyCartMessage
+        });
+        
+        // Forzar actualización de la página del carrito
+        setTimeout(() => {
+            updateCartPage();
+        }, 100);
+    }
+    
+    console.log('✅ Carrito inicializado correctamente');
 });
 
 // === FUNCIONES GLOBALES PARA COMPATIBILIDAD ===
@@ -590,3 +641,66 @@ window.addRecommendedToCart = addRecommendedToCart;
 window.showCartModal = showCartModal;
 window.toggleCart = toggleCart;
 window.setAddToCartListeners = setAddToCartListeners;
+
+// === TEST FUNCTIONALITY ===
+
+// Function to add sample products for testing
+function addSampleProducts() {
+    const sampleProducts = [
+        {
+            name: "Platinum 100% Creatine",
+            price: "S/ 125.00",
+            img: "Imagenes/produ1.png",
+            qty: 1,
+            categories: ["Muscletech", "Sin sabor", "Creatina monohidratada (5g)"]
+        },
+        {
+            name: "Gold Standard 100% Whey",
+            price: "S/ 185.00",
+            img: "Imagenes/produ4.png",
+            qty: 2,
+            categories: ["Optimum Nutrition", "Caramelo", "Proteína de suero, BCAA"]
+        }
+    ];
+    
+    cart = sampleProducts;
+    saveCart();
+    updateCartDisplay();
+    showNotification('Productos de prueba agregados');
+}
+
+// Function to test the cart system
+function testCart() {
+    console.log('🧪 Testing cart system...');
+    console.log('Current cart:', cart);
+    
+    if (cart.length === 0) {
+        console.log('Cart is empty, adding sample products...');
+        addSampleProducts();
+    }
+    
+    updateCartDisplay();
+    console.log('✅ Cart test completed');
+}
+
+// === ENHANCED CART FUNCTIONALITY ===
+
+// Function to get cart statistics
+function getCartStats() {
+    const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+    const totalValue = cart.reduce((sum, item) => {
+        const price = parseFloat(item.price.replace(/[^\d.]/g, '')) || 0;
+        return sum + (price * item.qty);
+    }, 0);
+    
+    return {
+        totalItems,
+        totalValue,
+        averagePrice: totalItems > 0 ? totalValue / totalItems : 0
+    };
+}
+
+// === EXPORT FUNCTIONS FOR GLOBAL USE ===
+window.addSampleProducts = addSampleProducts;
+window.testCart = testCart;
+window.getCartStats = getCartStats;

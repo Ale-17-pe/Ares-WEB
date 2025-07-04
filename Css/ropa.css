@@ -335,6 +335,364 @@
     color: rgb(0, 0, 0);
 }
 
+/* === ESTILOS PARA PRODUCTOS CON ESTILO SUPLE === */
+.productos-section {
+    padding: 40px 20px;
+    background-color: #000;
+    color: #fff;
+}
+
+.productos-section .suplementos-slider-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.productos-section .suplementos-slider {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.productos-section .product-card {
+    background: transparent;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    padding: 20px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    border: 1px solid rgba(255, 213, 0, 0.24);
+    border-radius: 0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.productos-section .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 214, 0, 0.4);
+}
+
+.productos-section .product-card img {
+    width: 100%;
+    max-width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin: 30px;
+    border-radius: 10px;
+}
+
+.productos-section .product-card h4 {
+    font-size: 1.1em;
+    margin: 10px 0;
+    text-align: center;
+    color: #ffffff !important;
+    font-family: 'CodecProExtraBold', Arial, sans-serif;
+    line-height: 1.3;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.productos-section .product-card p {
+    margin: 8px 0;
+    text-align: center;
+    font-size: 0.9em;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.productos-section .product-card p strong {
+    color: #FFD600;
+    font-size: 1.2em;
+    font-family: 'CodecProExtraBold', Arial, sans-serif;
+}
+
+.productos-section .product-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 10px 0;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.productos-section .category-btn {
+    background: linear-gradient(145deg, #3d3d3d, #2d2d2d);
+    color: #FFD600;
+    border: 1px solid rgba(255, 214, 0, 0.3);
+    padding: 4px 8px;
+    border-radius: 500px;
+    font-size: 0.7em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+}
+
+.productos-section .category-btn:hover {
+    background: linear-gradient(145deg, #FFD600, #e6c200);
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(255, 214, 0, 0.3);
+}
+
+.productos-section .product-buttons {
+    margin-top: auto;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.productos-section .product-buttons button {
+    background: #000000;
+    border: none;
+    color: #000;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    flex: 1;
+    min-width: 110px;
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+}
+
+.productos-section .product-buttons .add-to-cart {
+    background: linear-gradient(145deg, #FFD600, #e6c200);
+    color: rgb(0, 0, 0);
+}
+
+.productos-section .product-buttons .buy-now {
+    background: linear-gradient(145deg, #FFD600, #e6c200);
+    color: #000;
+}
+
+.productos-section .product-buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.productos-section .product-buttons .add-to-cart:hover {
+    background: linear-gradient(145deg, #5CBF60, #4CAF50);
+}
+
+.productos-section .product-buttons .buy-now:hover {
+    background: linear-gradient(145deg, #ffffff, #FFD600);
+}
+
+.productos-section .product-buttons button:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* === ESTILOS PARA SECCIONES DE GÉNERO CON ESTILO SUPLE === */
+.gender-section .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.gender-section .product-card {
+    background: transparent;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    padding: 20px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    border: 1px solid rgba(255, 213, 0, 0.24);
+    border-radius: 0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.gender-section .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 214, 0, 0.4);
+}
+
+.gender-section .product-card img {
+    width: 100%;
+    max-width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin: 30px;
+    border-radius: 10px;
+}
+
+.gender-section .product-card h4 {
+    font-size: 1.1em;
+    margin: 10px 0;
+    text-align: center;
+    color: #ffffff !important;
+    font-family: 'CodecProExtraBold', Arial, sans-serif;
+    line-height: 1.3;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gender-section .product-card p {
+    margin: 8px 0;
+    text-align: center;
+    font-size: 0.9em;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.gender-section .product-card p strong {
+    color: #FFD600;
+    font-size: 1.2em;
+    font-family: 'CodecProExtraBold', Arial, sans-serif;
+}
+
+.gender-section .product-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 10px 0;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.gender-section .category-btn {
+    background: linear-gradient(145deg, #3d3d3d, #2d2d2d);
+    color: #FFD600;
+    border: 1px solid rgba(255, 214, 0, 0.3);
+    padding: 4px 8px;
+    border-radius: 500px;
+    font-size: 0.7em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+}
+
+.gender-section .category-btn:hover {
+    background: linear-gradient(145deg, #FFD600, #e6c200);
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(255, 214, 0, 0.3);
+}
+
+.gender-section .product-buttons {
+    margin-top: auto;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.gender-section .product-buttons button {
+    background: #000000;
+    border: none;
+    color: #000;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    flex: 1;
+    min-width: 110px;
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+}
+
+.gender-section .product-buttons .add-to-cart {
+    background: linear-gradient(145deg, #FFD600, #e6c200);
+    color: rgb(0, 0, 0);
+}
+
+.gender-section .product-buttons .buy-now {
+    background: linear-gradient(145deg, #FFD600, #e6c200);
+    color: #000;
+}
+
+.gender-section .product-buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.gender-section .product-buttons .add-to-cart:hover {
+    background: linear-gradient(145deg, #5CBF60, #4CAF50);
+}
+
+.gender-section .product-buttons .buy-now:hover {
+    background: linear-gradient(145deg, #ffffff, #FFD600);
+}
+
+.gender-section .product-buttons button:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
 /* Modal Styles */
 .modal-overlay {
     position: fixed;
@@ -535,6 +893,38 @@
     
     .products-grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .productos-section .suplementos-slider {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+    }
+    
+    .productos-section .product-card {
+        min-height: 450px;
+        padding: 15px;
+    }
+    
+    .productos-section .product-card img {
+        max-width: 150px;
+        height: 150px;
+        margin: 20px;
+    }
+    
+    .gender-section .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+    }
+    
+    .gender-section .product-card {
+        min-height: 450px;
+        padding: 15px;
+    }
+    
+    .gender-section .product-card img {
+        max-width: 150px;
+        height: 150px;
+        margin: 20px;
     }
 }
 

@@ -8,14 +8,9 @@
     <link rel="stylesheet" href="Css/index.css">
     <link rel="stylesheet" href="Css/HyF.css">
     <link rel="icon" href="Imagenes/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrito de Compras - AresFitness</title>
-  <link rel="stylesheet" href="Css/carrito.css">
-  <link rel="icon" href="Imagenes/logo.png" type="image/png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -23,11 +18,6 @@
         <a href="index.html">
             <img src="Imagenes/logo.png" alt="Logo AresFitness">
         </a>
-  <header>
-    <div class="logo-container">
-      <a href="index.jsp">
-        <img src="Imagenes/logo.png" alt="Logo AresFitness">
-      </a>
     </div>
     <nav>
         <ul> 
@@ -66,8 +56,20 @@
     <div class="cart-container">
         <h1>Carrito de Compras</h1>
         
+        <!-- Mensaje cuando el carrito está vacío -->
+        <div id="empty-cart-message" class="empty-cart" style="display: none;">
+            <div class="empty-cart-content">
+                <svg class="empty-cart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17 18a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-1.11.89-2 2-2M1 2h3.27l.94 2H20a1 1 0 0 1 1 1c0 .17-.05.34-.12.5l-3.58 6.47c-.34.61-1 1.03-1.8 1.03H8.1l-.9 1.63-.03.12a.25.25 0 0 0 .25.25H19v2H7a2 2 0 0 1-2-2c0-.35.09-.68.24-.96l1.36-2.45L3 4H1V2m6 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-1.11.89-2 2-2m9-7l2.78-5H6.14l2.36 5H16z"/>
+                </svg>
+                <h2>Tu carrito está vacío</h2>
+                <p>Descubre nuestros productos y agrega tus favoritos al carrito</p>
+                <button class="browse-products-btn" onclick="browseProducts()">Ver Productos</button>
+            </div>
+        </div>
+        
         <!-- Contenido del carrito -->
-        <div class="cart-content">
+        <div class="cart-content" style="display: none;">
             <div class="cart-items-section">
                 <h2>Productos en tu carrito</h2>
                 <div id="cart-items-list">
@@ -98,81 +100,7 @@
                     </div>
                 </div>
             </div>
-    <nav>
-      <ul> 
-        <li><a href="planes.jsp">PLANES</a></li>
-        <li><a href="ubi.jsp">UBICACIÓN</a></li>
-        <li>
-          <a href="carrito.jsp" class="cart-icon">
-            <i class="fas fa-shopping-cart"></i>
-            <span id="contador-carrito" class="cart-count">0</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-
-  <main class="cart-container">
-    <h1>Mi Carrito</h1>
-    
-    <div class="cart-content">
-      <section class="cart-items">
-        <div class="empty-cart" id="empty-cart-message">
-          <i class="fas fa-shopping-cart"></i>
-          <p>Tu carrito está vacío</p>
-          <a href="planes.jsp" class="btn-primary">Ver planes</a>
         </div>
-        
-        <table class="cart-table" id="cart-table" style="display: none;">
-          <thead>
-            <tr>
-              <th>Producto</th>
-              <th>Precio</th>
-              <th>Cantidad</th>
-              <th>Total</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="cart-items-body">
-            <!-- Los items del carrito se cargarán aquí -->
-          </tbody>
-        </table>
-      </section>
-      
-      <aside class="cart-summary" id="cart-summary" style="display: none;">
-        <h3>Resumen de Compra</h3>
-        
-        <div class="summary-details">
-          <div class="summary-row">
-            <span>Subtotal:</span>
-            <span id="subtotal">S/ 0.00</span>
-          </div>
-          <div class="summary-row">
-            <span>IGV (18%):</span>
-            <span id="igv">S/ 0.00</span>
-          </div>
-          <div class="summary-row total">
-            <span>Total:</span>
-            <span id="total">S/ 0.00</span>
-          </div>
-        </div>
-        
-        <!-- Mensaje cuando el carrito está vacío -->
-        <div id="empty-cart-message" class="empty-cart" style="display: none;">
-            <div class="empty-cart-content">
-                <svg class="empty-cart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17 18a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-1.11.89-2 2-2M1 2h3.27l.94 2H20a1 1 0 0 1 1 1c0 .17-.05.34-.12.5l-3.58 6.47c-.34.61-1 1.03-1.8 1.03H8.1l-.9 1.63-.03.12a.25.25 0 0 0 .25.25H19v2H7a2 2 0 0 1-2-2c0-.35.09-.68.24-.96l1.36-2.45L3 4H1V2m6 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-1.11.89-2 2-2m9-7l2.78-5H6.14l2.36 5H16z"/>
-                </svg>
-                <h2>Tu carrito está vacío</h2>
-                <p>Descubre nuestros productos y agrega tus favoritos al carrito</p>
-                <button class="browse-products-btn" onclick="browseProducts()">Ver Productos</button>
-            </div>
-        </div>
-        
-        <button class="btn-checkout" id="checkout-btn">
-          Proceder al Pago <i class="fas fa-arrow-right"></i>
-        </button>
-      </aside>
     </div>
 </main>
 
@@ -216,130 +144,5 @@
 <!-- Scripts -->
 <script src="JS/carrito.js"></script>
 <script src="JS/index.js"></script>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 AresFitness. Todos los derechos reservados.</p>
-  </footer>
-
-  <script src="JS/cart.js"></script>
-  <script>
-  document.addEventListener('DOMContentLoaded', async function() {
-    const usuarioId = localStorage.getItem('usuarioId');
-    
-    if (!usuarioId) {
-      window.location.href = 'login.html';
-      return;
-    }
-    
-    const carrito = new Carrito(usuarioId);
-    await carrito.cargarCarrito();
-    
-    const cartTable = document.getElementById('cart-table');
-    const emptyCartMsg = document.getElementById('empty-cart-message');
-    const cartSummary = document.getElementById('cart-summary');
-    const cartItemsBody = document.getElementById('cart-items-body');
-    
-    function renderCarrito() {
-      if (carrito.items.length === 0) {
-        cartTable.style.display = 'none';
-        cartSummary.style.display = 'none';
-        emptyCartMsg.style.display = 'flex';
-        return;
-      }
-      
-      // Mostrar tabla y resumen
-      cartTable.style.display = 'table';
-      cartSummary.style.display = 'block';
-      emptyCartMsg.style.display = 'none';
-      
-      // Limpiar tabla
-      cartItemsBody.innerHTML = '';
-      
-      // Llenar tabla con items
-      carrito.items.forEach(item => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>
-            <div class="product-info">
-              <img src="${item.imagen_url || 'Imagenes/default-product.png'}" alt="${item.nombre}">
-              <span>${item.nombre}</span>
-            </div>
-          </td>
-          <td>S/ ${item.precio.toFixed(2)}</td>
-          <td>
-            <div class="quantity-control">
-              <button class="quantity-btn minus" data-id="${item.producto_id}">-</button>
-              <span class="quantity">${item.cantidad}</span>
-              <button class="quantity-btn plus" data-id="${item.producto_id}">+</button>
-            </div>
-          </td>
-          <td>S/ ${(item.precio * item.cantidad).toFixed(2)}</td>
-          <td>
-            <button class="remove-btn" data-id="${item.producto_id}">
-              <i class="fas fa-trash"></i>
-            </button>
-          </td>
-        `;
-        cartItemsBody.appendChild(row);
-      });
-      
-      // Actualizar resumen
-      const subtotal = carrito.calcularTotal();
-      const igv = subtotal * 0.18;
-      const total = subtotal + igv;
-      
-      document.getElementById('subtotal').textContent = `S/ ${subtotal.toFixed(2)}`;
-      document.getElementById('igv').textContent = `S/ ${igv.toFixed(2)}`;
-      document.getElementById('total').textContent = `S/ ${total.toFixed(2)}`;
-      
-      // Actualizar contador
-      document.getElementById('contador-carrito').textContent = carrito.items.length;
-    }
-    
-    // Eventos para botones de cantidad
-    document.addEventListener('click', async function(e) {
-      if (e.target.classList.contains('quantity-btn')) {
-        const btn = e.target.closest('.quantity-btn');
-        const productoId = btn.dataset.id;
-        const isPlus = btn.classList.contains('plus');
-        
-        try {
-          if (isPlus) {
-            await carrito.actualizarCantidad(productoId, 
-              carrito.items.find(i => i.producto_id == productoId).cantidad + 1);
-          } else {
-            await carrito.actualizarCantidad(productoId, 
-              carrito.items.find(i => i.producto_id == productoId).cantidad - 1);
-          }
-          renderCarrito();
-        } catch (error) {
-          console.error('Error al actualizar cantidad:', error);
-        }
-      }
-      
-      // Eliminar producto
-      if (e.target.classList.contains('remove-btn') || e.target.closest('.remove-btn')) {
-        const btn = e.target.classList.contains('remove-btn') ? e.target : e.target.closest('.remove-btn');
-        const productoId = btn.dataset.id;
-        
-        try {
-          await carrito.eliminarProducto(productoId);
-          renderCarrito();
-        } catch (error) {
-          console.error('Error al eliminar producto:', error);
-        }
-      }
-    });
-    
-    // Botón de pago
-    document.getElementById('checkout-btn').addEventListener('click', function() {
-      window.location.href = 'pago.html';
-    });
-    
-    // Renderizar inicialmente
-    renderCarrito();
-  });
-  </script>
 </body>
 </html>
