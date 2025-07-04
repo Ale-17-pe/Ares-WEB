@@ -158,16 +158,28 @@ nav ul li a:hover::after {
     transform: scale(1.2);
 }
 
+/*Imagen-icono (tamaño y estilo) Login*/
 #icono-inicio-sesion {
     width: 24px;
     height: 24px;
     filter: brightness(0) invert(80%) sepia(29%) saturate(1273%) hue-rotate(3deg) brightness(105%) contrast(106%);
     transition: all 0.3s ease;
 }
-
 #icono-inicio-sesion:hover {
     transform: scale(1.2);
     filter: brightness(1) drop-shadow(0 0 4px #ffd500);
+}
+
+/*Imagen-icono (tamaño y estilo) Carrito*/
+#icono-carrito {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+#icono-carrito:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 4px #ffd500);
 }
 
 /* HEADER MEJORADO */
