@@ -1,434 +1,209 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compras | Tienda de Ropa</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Estilos básicos para el carrito */
-        .cart-overlay {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 99;
-            display: none;
-            justify-content: flex-end;
-        }
-        
-        .cart-overlay.active {
-            display: flex;
-        }
-        
-        .cart-container {
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
-            background-color: white;
-            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .cart-header {
-            padding: 20px;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .close-cart {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        .cart-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        
-        .cart-item {
-            display: flex;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-            position: relative;
-        }
-        
-        .cart-item-img {
-            width: 100px;
-            height: 120px;
-            object-fit: cover;
-            margin-right: 15px;
-        }
-        
-        .cart-item-details {
-            flex: 1;
-        }
-        
-        .cart-item-title {
-            margin: 0 0 5px 0;
-            font-size: 1rem;
-        }
-        
-        .cart-item-price {
-            margin: 0 0 5px 0;
-            font-weight: bold;
-        }
-        
-        .cart-item-size {
-            margin: 0 0 10px 0;
-            color: #666;
-        }
-        
-        .item-quantity {
-            display: flex;
-            align-items: center;
-        }
-        
-        .quantity-btn {
-            width: 25px;
-            height: 25px;
-            background-color: #f5f5f5;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .item-quantity span {
-            margin: 0 10px;
-        }
-        
-        .remove-item {
-            position: absolute;
-            right: 0;
-            top: 0;
-            background: none;
-            border: none;
-            color: #999;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        
-        .empty-cart {
-            text-align: center;
-            padding: 40px 0;
-        }
-        
-        .empty-cart i {
-            font-size: 3rem;
-            color: #ddd;
-            margin-bottom: 20px;
-        }
-        
-        .cart-footer {
-            padding: 20px;
-            border-top: 1px solid #eee;
-        }
-        
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        .cart-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .checkout-btn, .continue-shopping {
-            padding: 12px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        
-        .checkout-btn {
-            background-color: #000;
-            color: white;
-        }
-        
-        .continue-shopping {
-            background-color: #f5f5f5;
-        }
-        
-        /* Estilo para botones de "Añadir al carrito" en la página de productos */
-        .add-to-cart {
-            background-color: #000;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        
-        .add-to-cart:hover {
-            background-color: #333;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito de Compras - AresFitness</title>
+  <link rel="stylesheet" href="Css/carrito.css">
+  <link rel="icon" href="Imagenes/logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Ejemplo de productos en la página (esto estaría en tus páginas de productos) -->
-    <div class="product" style="margin: 50px; padding: 20px; border: 1px solid #eee; max-width: 300px;">
-        <img src="https://via.placeholder.com/300x400" alt="Producto" style="width: 100%;">
-        <h3>Camiseta Oversize Negra</h3>
-        <p>$29.99</p>
-        <select class="size-selector" style="padding: 5px; margin-right: 10px;">
-            <option value="S">S</option>
-            <option value="M" selected>M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-        </select>
-        <button class="add-to-cart" data-id="1" data-name="Camiseta Oversize Negra" data-price="29.99" data-image="https://via.placeholder.com/300x400">Añadir al carrito</button>
+  <header>
+    <div class="logo-container">
+      <a href="index.jsp">
+        <img src="Imagenes/logo.png" alt="Logo AresFitness">
+      </a>
     </div>
-    
-    <div class="product" style="margin: 50px; padding: 20px; border: 1px solid #eee; max-width: 300px;">
-        <img src="https://via.placeholder.com/300x400" alt="Producto" style="width: 100%;">
-        <h3>Jeans Slim Fit</h3>
-        <p>$59.99</p>
-        <select class="size-selector" style="padding: 5px; margin-right: 10px;">
-            <option value="30">30</option>
-            <option value="31">31</option>
-            <option value="32" selected>32</option>
-            <option value="33">33</option>
-        </select>
-        <button class="add-to-cart" data-id="2" data-name="Jeans Slim Fit" data-price="59.99" data-image="https://via.placeholder.com/300x400">Añadir al carrito</button>
-    </div>
-    
-    <!-- Botón para abrir el carrito -->
-    <button id="cart-btn" style="position: fixed; right: 20px; top: 20px; z-index: 100; background-color: #000; color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 1.2rem; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">
-        <i class="fas fa-shopping-bag"></i>
-        <span id="cart-count" style="position: absolute; top: -5px; right: -5px; background-color: #ffaf01; color: #000; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;">0</span>
-    </button>
+    <nav>
+      <ul> 
+        <li><a href="planes.jsp">PLANES</a></li>
+        <li><a href="ubi.jsp">UBICACIÓN</a></li>
+        <li>
+          <a href="carrito.jsp" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="contador-carrito" class="cart-count">0</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- Overlay del carrito -->
-    <div class="cart-overlay">
-        <div class="cart-container">
-            <div class="cart-header">
-                <h2>Tu Carrito</h2>
-                <button class="close-cart">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
-            <div class="cart-content">
-                <!-- Los items del carrito se agregarán dinámicamente aquí -->
-                
-                <!-- Estado cuando el carrito está vacío -->
-                <div class="empty-cart">
-                    <i class="fas fa-shopping-bag"></i>
-                    <h3>Tu carrito está vacío</h3>
-                    <p>Agrega algunos productos para comenzar</p>
-                    <button class="continue-shopping">Seguir comprando</button>
-                </div>
-            </div>
-            
-            <div class="cart-footer" style="display: none;">
-                <div class="cart-total">
-                    <span>Total:</span>
-                    <span>$0.00</span>
-                </div>
-                <div class="cart-buttons">
-                    <button class="checkout-btn">Proceder al pago</button>
-                    <button class="continue-shopping">Seguir comprando</button>
-                </div>
-            </div>
+  <main class="cart-container">
+    <h1>Mi Carrito</h1>
+    
+    <div class="cart-content">
+      <section class="cart-items">
+        <div class="empty-cart" id="empty-cart-message">
+          <i class="fas fa-shopping-cart"></i>
+          <p>Tu carrito está vacío</p>
+          <a href="planes.jsp" class="btn-primary">Ver planes</a>
         </div>
+        
+        <table class="cart-table" id="cart-table" style="display: none;">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="cart-items-body">
+            <!-- Los items del carrito se cargarán aquí -->
+          </tbody>
+        </table>
+      </section>
+      
+      <aside class="cart-summary" id="cart-summary" style="display: none;">
+        <h3>Resumen de Compra</h3>
+        
+        <div class="summary-details">
+          <div class="summary-row">
+            <span>Subtotal:</span>
+            <span id="subtotal">S/ 0.00</span>
+          </div>
+          <div class="summary-row">
+            <span>IGV (18%):</span>
+            <span id="igv">S/ 0.00</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total:</span>
+            <span id="total">S/ 0.00</span>
+          </div>
+        </div>
+        
+        <button class="btn-checkout" id="checkout-btn">
+          Proceder al Pago <i class="fas fa-arrow-right"></i>
+        </button>
+      </aside>
     </div>
+  </main>
 
-    <script>
-        // Carrito como array
-        let cart = [];
+  <footer>
+    <p>&copy; 2025 AresFitness. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="JS/cart.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', async function() {
+    const usuarioId = localStorage.getItem('usuarioId');
+    
+    if (!usuarioId) {
+      window.location.href = 'login.html';
+      return;
+    }
+    
+    const carrito = new Carrito(usuarioId);
+    await carrito.cargarCarrito();
+    
+    const cartTable = document.getElementById('cart-table');
+    const emptyCartMsg = document.getElementById('empty-cart-message');
+    const cartSummary = document.getElementById('cart-summary');
+    const cartItemsBody = document.getElementById('cart-items-body');
+    
+    function renderCarrito() {
+      if (carrito.items.length === 0) {
+        cartTable.style.display = 'none';
+        cartSummary.style.display = 'none';
+        emptyCartMsg.style.display = 'flex';
+        return;
+      }
+      
+      // Mostrar tabla y resumen
+      cartTable.style.display = 'table';
+      cartSummary.style.display = 'block';
+      emptyCartMsg.style.display = 'none';
+      
+      // Limpiar tabla
+      cartItemsBody.innerHTML = '';
+      
+      // Llenar tabla con items
+      carrito.items.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>
+            <div class="product-info">
+              <img src="${item.imagen_url || 'Imagenes/default-product.png'}" alt="${item.nombre}">
+              <span>${item.nombre}</span>
+            </div>
+          </td>
+          <td>S/ ${item.precio.toFixed(2)}</td>
+          <td>
+            <div class="quantity-control">
+              <button class="quantity-btn minus" data-id="${item.producto_id}">-</button>
+              <span class="quantity">${item.cantidad}</span>
+              <button class="quantity-btn plus" data-id="${item.producto_id}">+</button>
+            </div>
+          </td>
+          <td>S/ ${(item.precio * item.cantidad).toFixed(2)}</td>
+          <td>
+            <button class="remove-btn" data-id="${item.producto_id}">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        `;
+        cartItemsBody.appendChild(row);
+      });
+      
+      // Actualizar resumen
+      const subtotal = carrito.calcularTotal();
+      const igv = subtotal * 0.18;
+      const total = subtotal + igv;
+      
+      document.getElementById('subtotal').textContent = `S/ ${subtotal.toFixed(2)}`;
+      document.getElementById('igv').textContent = `S/ ${igv.toFixed(2)}`;
+      document.getElementById('total').textContent = `S/ ${total.toFixed(2)}`;
+      
+      // Actualizar contador
+      document.getElementById('contador-carrito').textContent = carrito.items.length;
+    }
+    
+    // Eventos para botones de cantidad
+    document.addEventListener('click', async function(e) {
+      if (e.target.classList.contains('quantity-btn')) {
+        const btn = e.target.closest('.quantity-btn');
+        const productoId = btn.dataset.id;
+        const isPlus = btn.classList.contains('plus');
         
-        // Cargar carrito desde localStorage al iniciar
-        function loadCart() {
-            const savedCart = localStorage.getItem('cart');
-            if (savedCart) {
-                cart = JSON.parse(savedCart);
-                updateCartUI();
-            }
+        try {
+          if (isPlus) {
+            await carrito.actualizarCantidad(productoId, 
+              carrito.items.find(i => i.producto_id == productoId).cantidad + 1);
+          } else {
+            await carrito.actualizarCantidad(productoId, 
+              carrito.items.find(i => i.producto_id == productoId).cantidad - 1);
+          }
+          renderCarrito();
+        } catch (error) {
+          console.error('Error al actualizar cantidad:', error);
         }
+      }
+      
+      // Eliminar producto
+      if (e.target.classList.contains('remove-btn') || e.target.closest('.remove-btn')) {
+        const btn = e.target.classList.contains('remove-btn') ? e.target : e.target.closest('.remove-btn');
+        const productoId = btn.dataset.id;
         
-        // Guardar carrito en localStorage
-        function saveCart() {
-            localStorage.setItem('cart', JSON.stringify(cart));
+        try {
+          await carrito.eliminarProducto(productoId);
+          renderCarrito();
+        } catch (error) {
+          console.error('Error al eliminar producto:', error);
         }
-        
-        // Añadir producto al carrito
-        function addToCart(productId, productName, productPrice, productImage, productSize) {
-            // Verificar si el producto ya está en el carrito
-            const existingItem = cart.find(item => 
-                item.id === productId && item.size === productSize
-            );
-            
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({
-                    id: productId,
-                    name: productName,
-                    price: parseFloat(productPrice),
-                    image: productImage,
-                    size: productSize,
-                    quantity: 1
-                });
-            }
-            
-            saveCart();
-            updateCartUI();
-            
-            // Mostrar feedback visual
-            const cartBtn = document.getElementById('cart-btn');
-            cartBtn.style.transform = 'scale(1.1)';
-            setTimeout(() => {
-                cartBtn.style.transform = 'scale(1)';
-            }, 200);
-        }
-        
-        // Actualizar la interfaz del carrito
-        function updateCartUI() {
-            const cartContent = document.querySelector('.cart-content');
-            const cartFooter = document.querySelector('.cart-footer');
-            const emptyCart = document.querySelector('.empty-cart');
-            const cartCount = document.getElementById('cart-count');
-            
-            // Actualizar contador
-            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-            cartCount.textContent = totalItems;
-            
-            // Mostrar/ocultar carrito vacío
-            if (cart.length === 0) {
-                emptyCart.style.display = 'block';
-                cartFooter.style.display = 'none';
-                cartContent.innerHTML = '';
-                cartContent.appendChild(emptyCart);
-            } else {
-                emptyCart.style.display = 'none';
-                cartFooter.style.display = 'block';
-                
-                // Generar HTML para los items del carrito
-                let cartHTML = '';
-                let total = 0;
-                
-                cart.forEach((item, index) => {
-                    const itemTotal = item.price * item.quantity;
-                    total += itemTotal;
-                    
-                    cartHTML += `
-                        <div class="cart-item" data-index="${index}">
-                            <img src="${item.image}" alt="${item.name}" class="cart-item-img">
-                            <div class="cart-item-details">
-                                <h3 class="cart-item-title">${item.name}</h3>
-                                <p class="cart-item-price">$${item.price.toFixed(2)}</p>
-                                <p class="cart-item-size">Talla: ${item.size}</p>
-                                <div class="item-quantity">
-                                    <button class="quantity-btn minus">-</button>
-                                    <span>${item.quantity}</span>
-                                    <button class="quantity-btn plus">+</button>
-                                </div>
-                            </div>
-                            <button class="remove-item">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    `;
-                });
-                
-                cartContent.innerHTML = cartHTML;
-                document.querySelector('.cart-total span:last-child').textContent = `$${total.toFixed(2)}`;
-                
-                // Agregar event listeners a los nuevos elementos
-                setupCartEventListeners();
-            }
-        }
-        
-        // Configurar event listeners para los elementos del carrito
-        function setupCartEventListeners() {
-            // Botones de cantidad
-            document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const index = parseInt(this.closest('.cart-item').dataset.index);
-                    if (cart[index].quantity > 1) {
-                        cart[index].quantity -= 1;
-                        saveCart();
-                        updateCartUI();
-                    }
-                });
-            });
-            
-            document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const index = parseInt(this.closest('.cart-item').dataset.index);
-                    cart[index].quantity += 1;
-                    saveCart();
-                    updateCartUI();
-                });
-            });
-            
-            // Botones de eliminar
-            document.querySelectorAll('.remove-item').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const index = parseInt(this.closest('.cart-item').dataset.index);
-                    cart.splice(index, 1);
-                    saveCart();
-                    updateCartUI();
-                });
-            });
-        }
-        
-        // Event listeners para el carrito
-        document.addEventListener('DOMContentLoaded', function() {
-            // Cargar carrito al iniciar
-            loadCart();
-            
-            // Botones del carrito
-            const cartBtn = document.getElementById('cart-btn');
-            const cartOverlay = document.querySelector('.cart-overlay');
-            const closeCart = document.querySelector('.close-cart');
-            const continueShoppingBtns = document.querySelectorAll('.continue-shopping');
-            
-            // Abrir carrito
-            cartBtn.addEventListener('click', function() {
-                cartOverlay.classList.add('active');
-            });
-            
-            // Cerrar carrito
-            function closeCartFunction() {
-                cartOverlay.classList.remove('active');
-            }
-            
-            closeCart.addEventListener('click', closeCartFunction);
-            continueShoppingBtns.forEach(btn => {
-                btn.addEventListener('click', closeCartFunction);
-            });
-            
-            // Event listeners para botones "Añadir al carrito"
-            document.querySelectorAll('.add-to-cart').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const productId = this.dataset.id;
-                    const productName = this.dataset.name;
-                    const productPrice = this.dataset.price;
-                    const productImage = this.dataset.image;
-                    const productSize = this.previousElementSibling.value;
-                    
-                    addToCart(productId, productName, productPrice, productImage, productSize);
-                });
-            });
-        });
-    </script>
+      }
+    });
+    
+    // Botón de pago
+    document.getElementById('checkout-btn').addEventListener('click', function() {
+      window.location.href = 'pago.html';
+    });
+    
+    // Renderizar inicialmente
+    renderCarrito();
+  });
+  </script>
 </body>
 </html>
