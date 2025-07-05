@@ -26,3 +26,12 @@ window.addEventListener('scroll', function() {
     parallaxSection.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
 });
     });
+    import CarritoController from './controllers/CarritoController.js';
+
+const carritoController = new CarritoController();
+
+document.getElementById('cartButton').addEventListener('click', (e) => {
+    // Evita que el enlace redireccione inmediatamente
+    e.preventDefault();
+    carritoController.agregarProducto({ nombre: 'Producto demo', precio: 10 });
+});
