@@ -1,4 +1,4 @@
-const db = require('../models/db');
+const db = require('../models/db.js');
 
 exports.procesarPago = (req, res) => {
   const usuarioId = req.usuario.id; // viene del token, seguro

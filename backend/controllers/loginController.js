@@ -49,11 +49,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function showLoginError(message) {
-    let errorBox = document.getElementById("login-error");
+    let errorBox = document.getElementById("login-error.html");
 
     if (!errorBox) {
         errorBox = document.createElement("div");
-        errorBox.id = "login-error";
+        errorBox.id = "login-error.html";
         errorBox.style.cssText = `
             background-color: #f8d7da;
             color: #721c24;

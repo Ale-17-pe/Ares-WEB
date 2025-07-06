@@ -12,9 +12,9 @@ app.use(cors());
 app.use(express.json());
 
 // Rutas
-app.use('/api/auth', authRoutes);
-app.use('/api/carrito', carritoRoutes);
-app.use('/api/pago', pagoRoutes);
+app.use('/api/auth.js', authRoutes);
+app.use('/api/carrito.js', carritoRoutes);
+app.use('/api/pago.js', pagoRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

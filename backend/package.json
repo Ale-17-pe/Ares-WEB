@@ -13,10 +13,3 @@
   }
 }
 
-{
-  "idUsuario": 12,
-  "items": [
-    { "nombre": "Creatina", "cantidad": 1, "precio": 125.00 },
-    { "nombre": "Proteína", "cantidad": 2, "precio": 185.00 }
-  ]
-}

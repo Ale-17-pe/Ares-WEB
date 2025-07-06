@@ -1,4 +1,4 @@
-const db = require('../models/db');
+const db = require('../models/db.js');
 
 exports.obtenerCarrito = (req, res) => {
   const usuarioId = req.usuario.id; // obtenido del token JWT por middleware
