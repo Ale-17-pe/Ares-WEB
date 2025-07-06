@@ -1,4 +1,6 @@
 // === CARRITO DE COMPRAS CON SISTEMA DE RECOMENDACIONES ===
+const usuario = JSON.parse(localStorage.getItem("usuario-ares"));
+const usuarioId = usuario.id;
 
 // Variable global del carrito
 let cart = JSON.parse(localStorage.getItem('ares-cart')) || [];
@@ -26,7 +28,7 @@ function addToCart(productCard) {
         .map(btn => btn.innerText);
 
     const existingItem = cart.find(item => item.name === name);
-    
+
     if (existingItem) {
         existingItem.qty += 1;
     } else {
@@ -38,7 +40,7 @@ function addToCart(productCard) {
             categories
         });
     }
-    
+
     saveCart();
     updateCartDisplay();
     showNotification(`${name} agregado al carrito`);
@@ -89,7 +91,7 @@ function browseProducts() {
 // Función para actualizar el display del carrito
 function updateCartDisplay() {
     updateCartCount();
-    
+
     if (window.location.pathname.includes('carrito.html')) {
         updateCartPage();
     }
@@ -99,7 +101,7 @@ function updateCartDisplay() {
 function updateCartCount() {
     const cartCountElements = document.querySelectorAll('.cart-count');
     const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-    
+
     cartCountElements.forEach(element => {
         element.textContent = totalItems;
     });
@@ -108,7 +110,7 @@ function updateCartCount() {
 // Función para actualizar la página completa del carrito
 function updateCartPage() {
     console.log('🔄 Actualizando página del carrito...');
-    
+
     const cartItemsList = document.getElementById('cart-items-list');
     const cartTotalSection = document.getElementById('cart-total-section');
     const emptyCartMessage = document.getElementById('empty-cart-message');
@@ -166,7 +168,7 @@ function updateCartPage() {
     } else {
         console.log('⚠️ No se encontró la lista de recomendaciones');
     }
-    
+
     console.log('✅ Página del carrito actualizada');
 }
 
@@ -174,7 +176,7 @@ function updateCartPage() {
 function createCartItemElement(item, priceNum) {
     const cartItemDiv = document.createElement('div');
     cartItemDiv.className = 'cart-item';
-    
+
     cartItemDiv.innerHTML = `
         <img src="${item.img}" alt="${item.name}">
         <div class="cart-item-details">
@@ -222,7 +224,7 @@ function updateCartTotal(totalSection, total) {
 // Función para actualizar recomendaciones
 function updateRecommendations(recommendationsList) {
     console.log('🔍 Iniciando proceso de recomendaciones...');
-    
+
     if (!recommendationsList) {
         console.log('❌ No se encontró el elemento recommendations-list');
         return;
@@ -231,7 +233,7 @@ function updateRecommendations(recommendationsList) {
     console.log('📦 Carrito actual:', cart);
     const recommendations = getRecommendations(cart);
     console.log('✨ Recomendaciones generadas:', recommendations);
-    
+
     recommendationsList.innerHTML = '';
 
     if (recommendations.length === 0) {
@@ -244,7 +246,7 @@ function updateRecommendations(recommendationsList) {
     recommendations.forEach(rec => {
         const recElement = document.createElement('div');
         recElement.className = 'recommendation-item';
-        
+
         recElement.innerHTML = `
             <img src="${rec.img}" alt="${rec.name}">
             <div class="recommendation-details">
@@ -264,17 +266,17 @@ function updateRecommendations(recommendationsList) {
 
 function getRecommendations(cartItems) {
     console.log('🎯 Calculando recomendaciones para:', cartItems.length, 'productos en carrito');
-    
+
     // Solo recomendar si hay al menos 1 item en el carrito
     if (cartItems.length < 1) {
         console.log('🚫 Carrito vacío, no hay recomendaciones');
         return [];
     }
-    
+
     // Obtener categorías de los items en el carrito
     const cartCategories = cartItems.map(item => item.categories || []).flat();
     console.log('🏷️ Categorías en el carrito:', cartCategories);
-    
+
     // Si no hay categorías, mostrar productos populares
     if (cartCategories.length === 0) {
         console.log('📈 Sin categorías específicas, mostrando productos populares');
@@ -286,17 +288,17 @@ function getRecommendations(cartItems) {
     // Simulación de productos disponibles (en una aplicación real, esto vendría de una base de datos)
     const allProducts = getAllAvailableProducts();
     console.log('🛍️ Productos disponibles para recomendar:', allProducts.length);
-    
+
     // Encontrar productos similares
     const recommendations = [];
-    
+
     allProducts.forEach(product => {
         // No recomendar productos que ya están en el carrito
         if (cartItems.some(item => item.name === product.name)) {
             console.log('❌ Producto ya en carrito, omitiendo:', product.name);
             return;
         }
-        
+
         // Calcular puntuación de similitud
         let score = 0;
         if (product.categories) {
@@ -307,7 +309,7 @@ function getRecommendations(cartItems) {
                 }
             });
         }
-        
+
         // Agregar productos con puntuación > 0 o productos populares
         if (score > 0 || recommendations.length < 3) {
             console.log(`📋 Agregando recomendación: "${product.name}" con puntuación ${score || 0.5}`);
@@ -317,12 +319,12 @@ function getRecommendations(cartItems) {
             });
         }
     });
-    
+
     // Ordenar por puntuación y tomar los 5 mejores
     const finalRecommendations = recommendations
         .sort((a, b) => b.score - a.score)
         .slice(0, 5);
-    
+
     console.log('🏆 Recomendaciones finales ordenadas por puntuación:', finalRecommendations);
     return finalRecommendations;
 }
@@ -379,10 +381,10 @@ function getAllAvailableProducts() {
 function addRecommendedToCart(productName) {
     const allProducts = getAllAvailableProducts();
     const product = allProducts.find(p => p.name === productName);
-    
+
     if (product) {
         const existingItem = cart.find(item => item.name === product.name);
-        
+
         if (existingItem) {
             existingItem.qty += 1;
         } else {
@@ -394,7 +396,7 @@ function addRecommendedToCart(productName) {
                 categories: product.categories
             });
         }
-        
+
         saveCart();
         updateCartDisplay();
         showNotification(`${product.name} agregado al carrito`);
@@ -426,7 +428,7 @@ function showNotification(message) {
         `;
         document.body.appendChild(notificationContainer);
     }
-    
+
     // Crear la notificación
     const notification = document.createElement('div');
     notification.id = `notification-${notificationCounter++}`;
@@ -448,24 +450,24 @@ function showNotification(message) {
         word-wrap: break-word;
         border: 2px solid #000;
     `;
-    
+
     // Agregar al contenedor
     notificationContainer.appendChild(notification);
-    
+
     // Reproducir sonido de confirmación
     playNotificationSound();
-    
+
     // Mostrar con animación
     setTimeout(() => {
         notification.style.transform = 'translateY(0)';
         notification.style.opacity = '1';
     }, 50);
-    
+
     // Ocultar después de 1 segundo
     setTimeout(() => {
         notification.style.transform = 'translateY(-50px)';
         notification.style.opacity = '0';
-        
+
         // Eliminar después de la animación
         setTimeout(() => {
             if (notification.parentNode) {
@@ -482,16 +484,16 @@ function playNotificationSound() {
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
         const oscillator = audioContext.createOscillator();
         const gainNode = audioContext.createGain();
-        
+
         oscillator.connect(gainNode);
         gainNode.connect(audioContext.destination);
-        
+
         oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
         oscillator.frequency.setValueAtTime(1000, audioContext.currentTime + 0.1);
-        
+
         gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
-        
+
         oscillator.start(audioContext.currentTime);
         oscillator.stop(audioContext.currentTime + 0.2);
     } catch (e) {
@@ -507,28 +509,28 @@ function showConfirmation(message, onConfirm) {
     const messageElement = document.getElementById('confirmation-message');
     const confirmBtn = document.getElementById('confirm-yes');
     const cancelBtn = document.getElementById('confirm-no');
-    
+
     if (!modal) return;
-    
+
     messageElement.textContent = message;
     modal.style.display = 'flex';
-    
+
     // Limpiar listeners anteriores
     const newConfirmBtn = confirmBtn.cloneNode(true);
     const newCancelBtn = cancelBtn.cloneNode(true);
     confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
     cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
-    
+
     // Agregar nuevos listeners
     newConfirmBtn.addEventListener('click', () => {
         modal.style.display = 'none';
         onConfirm();
     });
-    
+
     newCancelBtn.addEventListener('click', () => {
         modal.style.display = 'none';
     });
-    
+
     // Cerrar con ESC
     const escHandler = (e) => {
         if (e.key === 'Escape') {
@@ -542,30 +544,60 @@ function showConfirmation(message, onConfirm) {
 // === FUNCIONES DE CHECKOUT ===
 
 function processCheckout() {
-    if (cart.length === 0) {
-        showNotification('Tu carrito está vacío');
+    const usuario = JSON.parse(localStorage.getItem("usuario-ares"));
+    
+    if (!usuario || !usuario.id) {
+        showNotification("Debes iniciar sesión para completar la compra");
         return;
     }
-    
-    showConfirmation('¿Confirmar compra?', () => {
-        // Aquí iría la lógica de procesamiento de pago
-        showNotification('¡Compra realizada con éxito! Gracias por tu compra.');
-        cart = [];
-        saveCart();
-        updateCartDisplay();
-        
-        // Redirigir después de un delay
-        setTimeout(() => {
-            window.location.href = 'index.html';
-        }, 2000);
+
+    if (cart.length === 0) {
+        showNotification("Tu carrito está vacío");
+        return;
+    }
+
+    showConfirmation("¿Confirmar compra?", () => {
+        const pedido = {
+            idUsuario: usuario.id,
+            items: cart.map(item => ({
+                nombre: item.name,
+                cantidad: item.qty,
+                precio: parseFloat(item.price.replace(/[^\d.]/g, ''))
+            }))
+        };
+
+        fetch("http://localhost:3000/api/pedido", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(pedido)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log("✅ Pedido confirmado:", data);
+            showNotification("¡Compra realizada con éxito!");
+            cart = [];
+            saveCart();
+            updateCartDisplay();
+
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 2000);
+        })
+        .catch(error => {
+            console.error("❌ Error al enviar pedido:", error);
+            showNotification("Error al procesar la compra. Intenta de nuevo.");
+        });
     });
 }
+
 
 // === CONFIGURACIÓN DE LISTENERS PARA PRODUCTOS ===
 
 function setAddToCartListeners() {
     document.querySelectorAll('.add-to-cart').forEach(btn => {
-        btn.onclick = function() {
+        btn.onclick = function () {
             const card = btn.closest('.product-card');
             if (card) {
                 addToCart(card);
@@ -576,45 +608,45 @@ function setAddToCartListeners() {
 
 // === INICIALIZACIÓN ===
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log('🚀 Inicializando carrito...');
-    
+
     // Cargar carrito
     loadCart();
-    
+
     // Configurar listeners para botones "Agregar al Carro"
     setAddToCartListeners();
-    
+
     // Configurar checkout button
     const checkoutBtn = document.getElementById('checkout-btn');
     if (checkoutBtn) {
         checkoutBtn.addEventListener('click', processCheckout);
     }
-    
+
     // Actualizar display inicial
     updateCartDisplay();
-    
+
     // Auto-test si estamos en la página de carrito (para debugging)
     if (window.location.pathname.includes('carrito.html')) {
         console.log('📋 Página de carrito detectada');
-        
+
         // Verificar si hay elementos necesarios
         const cartItemsList = document.getElementById('cart-items-list');
         const recommendationsList = document.getElementById('recommendations-list');
         const emptyCartMessage = document.getElementById('empty-cart-message');
-        
+
         console.log('Elementos detectados:', {
             cartItemsList: !!cartItemsList,
             recommendationsList: !!recommendationsList,
             emptyCartMessage: !!emptyCartMessage
         });
-        
+
         // Forzar actualización de la página del carrito
         setTimeout(() => {
             updateCartPage();
         }, 100);
     }
-    
+
     console.log('✅ Carrito inicializado correctamente');
 });
 
@@ -662,7 +694,7 @@ function addSampleProducts() {
             categories: ["Optimum Nutrition", "Caramelo", "Proteína de suero, BCAA"]
         }
     ];
-    
+
     cart = sampleProducts;
     saveCart();
     updateCartDisplay();
@@ -673,12 +705,12 @@ function addSampleProducts() {
 function testCart() {
     console.log('🧪 Testing cart system...');
     console.log('Current cart:', cart);
-    
+
     if (cart.length === 0) {
         console.log('Cart is empty, adding sample products...');
         addSampleProducts();
     }
-    
+
     updateCartDisplay();
     console.log('✅ Cart test completed');
 }
@@ -692,7 +724,7 @@ function getCartStats() {
         const price = parseFloat(item.price.replace(/[^\d.]/g, '')) || 0;
         return sum + (price * item.qty);
     }, 0);
-    
+
     return {
         totalItems,
         totalValue,
